@@ -22,19 +22,7 @@ const routes = [
   {
   name: "Register",
   path: "/register",
-  component: () => import("./components/"),
-  props: true,
-  },
-  {
-  name: "LoginUser",
-  path: "/loginU",
-  component: () => import("./components/"),
-  props: true,
-  },
-  {
-  name: "LoginSpeaker",
-  path: "/loginS",
-  component: () => import("./components/"),
+  // component: () => import("./components/")
   props: true,
   }
 ];

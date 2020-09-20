@@ -2,7 +2,6 @@ const router = require("express").Router();
 const User = require("../models/User.js");
 const Event = require("../models/Event.js");
 
-
 router.get("/", (req, res, next) => {
   User.find({})
     .sort({ createdAt: "desc" })
