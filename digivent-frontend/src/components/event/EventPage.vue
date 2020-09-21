@@ -2,35 +2,29 @@
   <div>
     <input v-model="search" type="text" id="search" />
     <router-link :to="{ name: 'edit' }">New event</router-link>
-
-    <!-- <MySearchbar :events="events" /> -->
     <div class="contents">
       <div class="contents__box" v-for="(event, i) in filteredEvents" :key="i">
-        <div class="contents__img">
-          <img :src="event.image" />
-        </div>
-        <h4>{{ event.name }}</h4>
-        <router-link :to="{ name: 'edit', params: { eventId: event._id} }">edit</router-link>
-        <a href v-on:click.prevent="deleteEvent(event._id)">Delete Event</a>
-
+        <router-link v-bind:to="{ name: 'details', params: { eventId: event._id} }">
+          <div class="contents__img">
+            <img :src="event.image" />
+          </div>
+          <h4>{{ event.name }}</h4>
+          <router-link :to="{ name: 'edit', params: { eventId: event._id} }">edit</router-link>
+          <a href v-on:click.prevent="deleteEvent(event._id)">Delete Event</a>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import MySearchbar from "../../components/MySearchbar.vue";
-
 export default {
   name: "event",
-  // components: {
-  //   MySearchbar,
-  // },
 
   data: function () {
     return {
-      events: [],
       search: "",
+      events: [],
     };
   },
   methods: {
@@ -49,7 +43,7 @@ export default {
         });
     },
   },
-  created() {
+  created: function () {
     this.getEvents();
   },
   computed: {
@@ -57,16 +51,9 @@ export default {
       return this.events.filter((event) => {
         let byName =
           event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
-        // let bySpeaker =
-        //   event.speaker.firstName
-        //     .toLowerCase()
-        //     .indexOf(this.search.toLowerCase()) > -1;
         if (byName === true) {
           return byName;
         }
-        // else if (bySpeaker === true) {
-        //   return bySpeaker;
-        // }
       });
     },
   },
