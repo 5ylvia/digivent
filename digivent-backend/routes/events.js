@@ -1,6 +1,6 @@
 const router = require("express").Router();
-
 const Event = require("../models/Event");
+const Speaker = require("../models/Speaker.js");
 
 router.param("id", (req, res, next, id) => {
   Event.findById(id)
@@ -33,18 +33,7 @@ router.post("/", (req, res, next) => {
     })
     .catch(next);
 });
-////
 
-// router.get("/speaker/:name", (req, res, next) => {
-//   Event.find({ speaker: req.event.speaker })
-//     .sort({ createdAt: "desc" })
-//     .then((results) => {
-//       return res.status(200).send(results);
-//     })
-//     .catch(next);
-// });
-
-/////
 router.get("/:id", (req, res, next) => {
   return res.status(200).send(req.event);
 });
@@ -64,5 +53,14 @@ router.delete("/:id", (req, res, next) => {
     })
     .catch(next);
 });
+
+// router.get("/:id/speaker", (req, res, next) => {
+//   Speaker.find({ id: req.event.speaker })
+//     .sort({ createdAt: "desc" })
+//     .then((speaker) => {
+//       return res.status(200).send(speaker);
+//     })
+//     .catch(next);
+// });
 
 module.exports = router;
