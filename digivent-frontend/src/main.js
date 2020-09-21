@@ -30,7 +30,19 @@ const routes = [
     path: "/registerspeaker",
     component: () => import("./components/register/RegisterSpeaker.vue"),
     props: true,
-    }
+    },
+  {
+    name: "profilespeaker",
+    path: "/profilespeaker",
+    component: () => import("./components/Profile/ProfileSpeaker.vue"),
+    props: true,
+    },
+    {
+      name: "profileuser",
+      path: "/profileuser",
+      component: () => import("./components/Profile/ProfileUser.vue"),
+      props: true,
+      }
 ];
 
 const router = new VueRouter({
