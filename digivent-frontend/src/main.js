@@ -10,39 +10,44 @@ const routes = [
   {
     name: "event",
     path: "/events",
-    component: () => import("./components/event/EventPage.vue"),
+    component: () => import("./components/event/EventPage"),
     props: true,
   },
   {
     name: "edit",
     path: "/events/:eventId?/edit",
-    component: () => import("./components/edit-event/EditEvent.vue"),
+    component: () => import("./components/edit-event/EditEvent"),
     props: true,
   }, 
   {
-  name: "registeruser",
-  path: "/registeruser",
-  component: () => import("./components/register/RegisterUser.vue"),
-  props: true,
-  },
-  {
-    name: "registerspeaker",
-    path: "/registerspeaker",
-    component: () => import("./components/register/RegisterSpeaker.vue"),
-    props: true,
-    },
-  {
     name: "profilespeaker",
     path: "/profilespeaker",
-    component: () => import("./components/Profile/ProfileSpeaker.vue"),
+    component: () => import("./components/profile/ProfileSpeaker.vue"),
     props: true,
     },
     {
       name: "profileuser",
       path: "/profileuser",
-      component: () => import("./components/Profile/ProfileUser.vue"),
+      component: () => import("./components/profile/ProfileUser.vue"),
       props: true,
-      }
+      },
+      {
+    name: "login",
+    path: "/",
+    component: () => import("./components/login/Login"),
+  },
+ {
+  name: "register-user",
+  path: "/register-user",
+  component: () => import("./components/register/RegisterUser"),
+  props: true,
+  },
+  {
+    name: "register-speaker",
+    path: "/register-speaker",
+    component: () => import("./components/register/RegisterSpeaker"),
+    props: true,
+    }
 ];
 
 const router = new VueRouter({
