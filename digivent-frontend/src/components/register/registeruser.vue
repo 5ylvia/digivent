@@ -12,39 +12,26 @@
         </ul>
       </div>
       <div>
-        <label for="firstname">First Name</label>
-        <input v-model="speaker.firstname" type="text" name="firstname" id="firstname" />
-      </div>
-      <div>
-        <label for="lastname">Last Name</label>
-        <input v-model="speaker.lastname" type="text" name="lastname" id="lastname" />
-      </div>
-      <div>
         <label for="username">username</label>
-        <input v-model="speaker.username" type="text" name="username" id="username" />
+        <input v-model="user.userName" type="text" name="username" id="username" />
       </div>
       <div>
         <label for="email">Email</label>
-        <input v-model="speaker.email" type="text" name="email" id="email" />
+        <input v-model="user.email" type="text" name="email" id="email" />
       </div>
       <div>
         <label for="password">Password</label>
-        <input v-model="speaker.password" type="text" name="password" id="password" />
-      </div>
-      <div>
-        <label for="desc">Description</label>
-        <input v-model="speaker.desc" type="text" name="desc" id="desc" />
+        <input v-model="user.password" type="text" name="password" id="password" />
       </div>
       <div>
         <label for="image">Image</label>
-        <input v-model="speaker.image" type="img" name="image" id="image" />
+        <input v-model="user.image" type="img" name="image" id="image" />
       </div>
       <div>
         <input type="submit" value="Register" />
       </div>
     </form>
 
-    <!-- form groups -->
   </div>
 </template>
 
@@ -52,13 +39,10 @@
 export default {
   data: function () {
     return {
-      speaker: {
-        firstname: "",
-        lastname: "",
-        username: "",
+      user: {
+        userName: "",
         email: "",
         password: "",
-        description: "",
         image: "",
       },
       errors: [],
@@ -68,36 +52,27 @@ export default {
     checkForm: function (event) {
       event.preventDefault();
       this.errors = [];
-      if (!this.speaker.firstname) {
-        this.errors.push("First name required!");
-      }
-      if (!this.speaker.lastname) {
-        this.errors.push("Last name required");
-      }
-      if (!this.speaker.username) {
+      if (!this.user.userName) {
         this.errors.push("Username required");
       }
-      if (!this.speaker.email) {
+      if (!this.user.email) {
         this.errors.push("Email required");
       }
-      if (!this.speaker.password) {
+      if (!this.user.password) {
         this.errors.push("Password required");
       }
-      if (!this.speaker.desc) {
-        this.errors.push("Description required");
-      }
       if (!this.errors.length) {
-        this.registerUser(this.speaker);
+        this.registerUser(this.user);
       }
     },
-    registerUser: function (speaker) {
+    registerUser: function (user) {
       this.$http
-        .post(`${process.env.VUE_APP_API_URL}speakers/register`, speaker)
+        .post(`${process.env.VUE_APP_API_URL}users/register`, user)
         .then(
           (response) => {
             if (response.body) {
               localStorage.loggedIn = true;
-              localStorage.speaker = speaker.email;
+              localStorage.user = user.email;
               this.$emit("$loggedIn", true);
               this.$router.push({ path: "/" });
             }

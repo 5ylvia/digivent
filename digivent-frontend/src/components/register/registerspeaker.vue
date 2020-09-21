@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Register User</h1>
+    <h1>Register Speaker</h1>
 
     <form v-on:submit.prevent="checkForm">
       <div v-if="errors.length">
@@ -13,15 +13,15 @@
       </div>
       <div>
         <label for="firstname">First Name</label>
-        <input v-model="speaker.firstname" type="text" name="firstname" id="firstname" />
+        <input v-model="speaker.firstName" type="text" name="firstname" id="firstname" />
       </div>
       <div>
         <label for="lastname">Last Name</label>
-        <input v-model="speaker.lastname" type="text" name="lastname" id="lastname" />
+        <input v-model="speaker.lastName" type="text" name="lastname" id="lastname" />
       </div>
       <div>
         <label for="username">username</label>
-        <input v-model="speaker.username" type="text" name="username" id="username" />
+        <input v-model="speaker.userName" type="text" name="username" id="username" />
       </div>
       <div>
         <label for="email">Email</label>
@@ -33,7 +33,7 @@
       </div>
       <div>
         <label for="desc">Description</label>
-        <input v-model="speaker.desc" type="text" name="desc" id="desc" />
+        <input v-model="speaker.description" type="text" name="desc" id="desc" />
       </div>
       <div>
         <label for="image">Image</label>
@@ -44,7 +44,6 @@
       </div>
     </form>
 
-    <!-- form groups -->
   </div>
 </template>
 
@@ -53,9 +52,9 @@ export default {
   data: function () {
     return {
       speaker: {
-        firstname: "",
-        lastname: "",
-        username: "",
+        firstName: "",
+        lastName: "",
+        userName: "",
         email: "",
         password: "",
         description: "",
@@ -68,13 +67,13 @@ export default {
     checkForm: function (event) {
       event.preventDefault();
       this.errors = [];
-      if (!this.speaker.firstname) {
+      if (!this.speaker.firstName) {
         this.errors.push("First name required!");
       }
-      if (!this.speaker.lastname) {
+      if (!this.speaker.lastName) {
         this.errors.push("Last name required");
       }
-      if (!this.speaker.username) {
+      if (!this.speaker.userName) {
         this.errors.push("Username required");
       }
       if (!this.speaker.email) {
@@ -83,7 +82,7 @@ export default {
       if (!this.speaker.password) {
         this.errors.push("Password required");
       }
-      if (!this.speaker.desc) {
+      if (!this.speaker.description) {
         this.errors.push("Description required");
       }
       if (!this.errors.length) {
