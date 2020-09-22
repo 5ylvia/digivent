@@ -8,20 +8,35 @@
           <b>Please correct the following this.errors:</b>
         </p>
         <ul v-for="(error, index) in errors" v-bind:key="index">
-          <li>{{error}}</li>
+          <li>{{ error }}</li>
         </ul>
       </div>
       <div>
         <label for="firstname">First Name</label>
-        <input v-model="speaker.firstName" type="text" name="firstname" id="firstname" />
+        <input
+          v-model="speaker.firstName"
+          type="text"
+          name="firstname"
+          id="firstname"
+        />
       </div>
       <div>
         <label for="lastname">Last Name</label>
-        <input v-model="speaker.lastName" type="text" name="lastname" id="lastname" />
+        <input
+          v-model="speaker.lastName"
+          type="text"
+          name="lastname"
+          id="lastname"
+        />
       </div>
       <div>
         <label for="username">username</label>
-        <input v-model="speaker.userName" type="text" name="username" id="username" />
+        <input
+          v-model="speaker.userName"
+          type="text"
+          name="username"
+          id="username"
+        />
       </div>
       <div>
         <label for="email">Email</label>
@@ -29,11 +44,21 @@
       </div>
       <div>
         <label for="password">Password</label>
-        <input v-model="speaker.password" type="text" name="password" id="password" />
+        <input
+          v-model="speaker.password"
+          type="text"
+          name="password"
+          id="password"
+        />
       </div>
       <div>
         <label for="desc">Description</label>
-        <input v-model="speaker.description" type="text" name="desc" id="desc" />
+        <input
+          v-model="speaker.description"
+          type="text"
+          name="desc"
+          id="desc"
+        />
       </div>
       <div>
         <label for="image">Image</label>
@@ -49,7 +74,7 @@
 <script>
 export default {
   name: "register-speaker",
-  data: function () {
+  data: function() {
     return {
       speaker: {
         firstName: "",
@@ -64,7 +89,7 @@ export default {
     };
   },
   methods: {
-    checkForm: function (event) {
+    checkForm: function(event) {
       event.preventDefault();
       this.errors = [];
       if (!this.speaker.firstName) {
@@ -89,7 +114,7 @@ export default {
         this.registerUser(this.speaker);
       }
     },
-    registerUser: function (speaker) {
+    registerUser: function(speaker) {
       this.$http
         .post(`${process.env.VUE_APP_API_URL}speakers/register`, speaker)
         .then(
@@ -110,5 +135,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
