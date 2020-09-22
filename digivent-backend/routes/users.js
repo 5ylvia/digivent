@@ -2,6 +2,21 @@ const router = require("express").Router();
 const User = require("../models/User.js");
 const Event = require("../models/Event.js");
 
+
+router.param("id", (req, res, next, id) => {
+  User.findById(id)
+    .then((user) => {
+      if (!user) {
+        res.status(404).send("User not found");
+      } else {
+        req.user = user;
+        return next();
+      }
+    })
+    .catch(next);
+});
+
+
 router.get("/", (req, res, next) => {
   User.find({})
     .sort({ createdAt: "desc" })
@@ -38,9 +53,8 @@ router.delete("/:id", (req, res, next) => {
     res.status(200).send(result);
   });
 });
-
 router.get("/:id/events", (req, res, next) => {
-  Event.find({ user: req.user.id })
+  User.find({ events : req.events })
     .sort({ createdAt: "desc" })
     .then((events) => {
       return res.status(200).send(events);
@@ -48,32 +62,29 @@ router.get("/:id/events", (req, res, next) => {
     .catch(next);
 });
 
-router.post("/:id/events", (req, res, next) => {
-  const event = new Event(req.body);
-  event.user = req.user.id;
-  event
-    .save()
-    .then((event) => {
-      if (!req.user.events) {
-        req.user.events = [];
-      }
-      req.user.event.push(event);
-      req.user
-        .save()
-        .then((user) => {
-          res.status(201).send({ event: event, user: user });
-        })
-        .catch(next);
-    })
-    .catch(next);
+router.put("/:id/events", (req, res, next) => {
+  User.findByIdAndUpdate(req.user.id, req.body)
+  .then((event) => {
+    if (!req.user.events) {
+      req.user.events = [];
+    }
+    req.user.events.push(event);
+    req.user
+      .save()
+      .then((user) => {
+        res.status(201).send({ event: event, user: user });
+      })
+      .catch(next);
+})
+  .catch(next);
 });
 
 router.post("/login", (req, res, next) => {
-  if (!req.body.email) {
-    return res.status(422).send("Email can't be blank");
+  if (!req.body.userName) {
+    return res.status(422).send("username can't be blank");
   }
 
-  User.findOne({ email: req.body.email })
+  User.findOne({ userName: req.body.userName })
     .then(function (user) {
       if (!user) {
         return res.status(422).send("User not found");
@@ -94,7 +105,7 @@ router.post("/register", function (req, res, next) {
     return res.status(422).send("Email can't be blank");
   }
 
-  User.findOne({ email: req.body.email })
+  User.findOne({ userName: req.body.userName })
     .then((user) => {
       if (user) {
         return res.status(422).send("User already exists");

@@ -31,25 +31,26 @@
         <input type="submit" value="Register" />
       </div>
     </form>
-
   </div>
 </template>
 
 <script>
 export default {
-  data: function () {
+  name: "register-user",
+
+  data: function() {
     return {
       user: {
         userName: "",
         email: "",
         password: "",
-        image: "",
+        image: ""
       },
-      errors: [],
+      errors: []
     };
   },
   methods: {
-    checkForm: function (event) {
+    checkForm: function(event) {
       event.preventDefault();
       this.errors = [];
       if (!this.user.userName) {
@@ -65,11 +66,11 @@ export default {
         this.registerUser(this.user);
       }
     },
-    registerUser: function (user) {
+    registerUser: function(user) {
       this.$http
         .post(`${process.env.VUE_APP_API_URL}users/register`, user)
         .then(
-          (response) => {
+          response => {
             if (response.body) {
               localStorage.loggedIn = true;
               localStorage.user = user.email;
@@ -77,12 +78,12 @@ export default {
               this.$router.push({ path: "/" });
             }
           },
-          (response) => {
+          response => {
             this.errors.push(response.body.message);
           }
         );
-    },
-  },
+    }
+  }
 };
 </script>
 

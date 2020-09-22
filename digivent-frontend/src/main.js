@@ -33,14 +33,14 @@ const routes = [
       },
       {
     name: "login",
-    path: "/",
+    path: "/login",
     component: () => import("./components/login/Login"),
   },
- {
-  name: "register-user",
-  path: "/register-user",
-  component: () => import("./components/register/RegisterUser"),
-  props: true,
+  {
+    name: "register-user",
+    path: "/register-user",
+    component: () => import("./components/register/RegisterUser"),
+    props: true,
   },
   {
     name: "register-speaker",
