@@ -10,13 +10,13 @@ const routes = [
   {
     name: "event",
     path: "/events",
-    component: () => import("./components/event/EventPage.vue"),
+    component: () => import("./components/event/EventPage"),
     props: true,
   },
   {
     name: "edit",
     path: "/events/:eventId?/edit",
-    component: () => import("./components/edit-event/EditEvent.vue"),
+    component: () => import("./components/edit-event/EditEvent"),
     props: true,
   },
   {
@@ -25,10 +25,22 @@ const routes = [
     component: () => import("./components/event-details/EventDetails.vue"),
     props: true,
   },
+
   {
-    name: "Register",
-    path: "/register",
-    // component: () => import("./components/")
+    name: "login",
+    path: "/",
+    component: () => import("./components/login/Login"),
+  },
+  {
+    name: "register-user",
+    path: "/register-user",
+    component: () => import("./components/register/RegisterUser"),
+    props: true,
+  },
+  {
+    name: "register-speaker",
+    path: "/register-speaker",
+    component: () => import("./components/register/RegisterSpeaker"),
     props: true,
   },
 ];

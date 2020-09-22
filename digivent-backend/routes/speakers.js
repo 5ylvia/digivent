@@ -109,6 +109,9 @@ router.post("/register", function (req, res, next) {
   if (!req.body.email) {
     return res.status(422).send("Email can't be blank");
   }
+  if (!req.body.password) {
+    return res.status(422).send("Password can't be blank");
+  }
 
   Speaker.findOne({ email: req.body.email })
     .then((speaker) => {
