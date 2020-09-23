@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     name: "event",
-    path: "/events",
+    path: "/event",
     component: () => import("./components/event/EventPage"),
     props: true,
   },
