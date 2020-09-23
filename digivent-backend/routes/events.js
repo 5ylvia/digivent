@@ -24,19 +24,29 @@ router.get("/", (req, res, next) => {
     .catch(next);
 });
 
-router.post("/", (req, res, next) => {
-  const event = new Event(req.body);
-  event
-    .save()
-    .then((result) => {
-      return res.status(201).send(result);
+router.get("/:id", (req, res, next) => {
+  return res.status(200).send(req.event);
+});
+
+router.get("/:id/speaker", (req, res, next) => {
+  Speaker.find({ _id: req.event.speaker })
+    .sort({ createdAt: "desc" })
+    .then((speaker) => {
+      return res.status(200).send(speaker[0]);
     })
     .catch(next);
 });
 
-router.get("/:id", (req, res, next) => {
-  return res.status(200).send(req.event);
-});
+// Post new event
+// router.post("/", (req, res, next) => {
+//   const event = new Event(req.body);
+//   event
+//     .save()
+//     .then((result) => {
+//       return res.status(201).send(result);
+//     })
+//     .catch(next);
+// });
 
 router.put("/:id", (req, res, next) => {
   Event.findByIdAndUpdate(req.event.id, req.body)
@@ -53,14 +63,5 @@ router.delete("/:id", (req, res, next) => {
     })
     .catch(next);
 });
-
-// router.get("/:id/speaker", (req, res, next) => {
-//   Speaker.find({ id: req.event.speaker })
-//     .sort({ createdAt: "desc" })
-//     .then((speaker) => {
-//       return res.status(200).send(speaker);
-//     })
-//     .catch(next);
-// });
 
 module.exports = router;
