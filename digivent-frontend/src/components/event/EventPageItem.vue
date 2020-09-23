@@ -9,7 +9,7 @@
         <router-link :to="{ name: 'edit', params: { eventId: event._id} }">edit</router-link>
         <a href v-on:click.prevent="deleteEvent(event._id)">Delete Event</a>
       </div>
-    </div>-->
+    </div> -->
   </div>
 </template>
 
@@ -22,5 +22,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

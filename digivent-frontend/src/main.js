@@ -27,6 +27,18 @@ const routes = [
   },
 
   {
+    name: "profilespeaker",
+    path: "/profilespeaker",
+    component: () => import("./components/profile/ProfileSpeaker.vue"),
+    props: true,
+  },
+  {
+    name: "profileuser",
+    path: "/profileuser",
+    component: () => import("./components/profile/ProfileUser.vue"),
+    props: true,
+  },
+  {
     name: "login",
     path: "/login",
     component: () => import("./components/login/Login"),
