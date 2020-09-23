@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     name: "event",
-    path: "/event",
+    path: "/events",
     component: () => import("./components/event/EventPage"),
     props: true,
   },
@@ -26,6 +26,18 @@ const routes = [
     props: true,
   },
 
+  {
+    name: "profilespeaker",
+    path: "/profilespeaker",
+    component: () => import("./components/profile/ProfileSpeaker.vue"),
+    props: true,
+  },
+  {
+    name: "profileuser",
+    path: "/profileuser",
+    component: () => import("./components/profile/ProfileUser.vue"),
+    props: true,
+  },
   {
     name: "login",
     path: "/login",

@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <router-link v-bind:to="'/'">HOME</router-link>
+    <router-link v-bind:to="'/events'">HOME</router-link>
     <router-link v-if="loggedIn === 'yes'" v-bind:to="'/login'"
       >Login</router-link
     >
