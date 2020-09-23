@@ -6,7 +6,10 @@
     <h4>{{ event.address }}</h4>
     <h4>{{ event.date }}</h4>
     <h4>{{ event.time }}</h4>
-    <SpeakerName :eventId="event._id" />
+    <h3>{{ event.speaker }}</h3>
+
+    <SpeakerName :speakerId="event.speaker" />
+
     <input type="button" value="Ask question" />
     <router-link :to="{ name: 'edit', params: { eventId: event._id } }">
       Edit event
@@ -27,12 +30,14 @@ export default {
   components: {
     SpeakerName,
   },
+  
   data: function() {
     return {
-      event: {},
+      event: {
+      },
     };
   },
-  created: function() {
+  mounted: function() {
     const id = this.$route.params.eventId;
     this.$http
       .get(`${process.env.VUE_APP_API_URL}events/${id}`)

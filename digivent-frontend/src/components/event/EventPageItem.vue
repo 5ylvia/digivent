@@ -1,24 +1,31 @@
 <template>
-  <div>
-    <!-- <div class="contents">
-      <div class="contents__box" v-for="(event, i) in events" :key="i">
-        <div class="contents__img">
-          <img :src="event.image" />
+      <div class="contents">
+  
+        <div class="contents__box" v-for="(event, i) in events" :key="i">
+          <router-link
+            v-bind:to="{ name: 'details', params: { eventId: event._id } }"
+          >
+            <div class="contents__img">
+              <img :src="event.image" />
+            </div>
+            <h2>{{ event.name }}</h2>
+            <SpeakerName :speakerId="event.speaker" />
+          </router-link>
         </div>
-        <h4>{{ event.name }}</h4>
-        <router-link :to="{ name: 'edit', params: { eventId: event._id} }">edit</router-link>
-        <a href v-on:click.prevent="deleteEvent(event._id)">Delete Event</a>
-      </div>
-    </div> -->
-  </div>
+
+</div>
+
 </template>
 
 <script>
-// import eventBus from "../../eventBus";
+import SpeakerName from "./EventPageSpeaker";
 
 export default {
   name: "EventPageItem",
-  //   props: ["events"],
+    components: {
+    SpeakerName,
+  },
+    props: ["events"],
 };
 </script>
 
