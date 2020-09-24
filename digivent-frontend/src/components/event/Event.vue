@@ -1,26 +1,37 @@
 <template>
   <div>
-    <MySearchbar v-model="search" />
+    <MySearchbar v-model="search" type="text" id="search" />
+
+    <!-- Speaker's view -->
+    <!-- <div v-if="isSpeaker" class="flexbox">
+      <h3>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h3>
+      <h4>Check <a href="">your events</a></h4>
+      <div class="thumb--s" v-if="this.$route.path !== '/events'">
+        <img :src="speaker.image" :alt="speaker.firstName" />
+      </div>
+    </div> -->
+
+    <h1>Explore</h1>
+    <h2>What’s upcoming events</h2>
+
     <router-link :to="{ name: 'edit' }">New event</router-link>
-    
-    <keep-alive>
-        <EventPageItem :events="filteredEvents"/>
-    </keep-alive>
+    <EventThumbList :events="filteredEvents" />
   </div>
 </template>
 
 <script>
+import EventThumbList from "./EventThumbList";
 import MySearchbar from "../MySearchbar";
-import EventPageItem from "../event/EventPageItem";
 
 export default {
   name: "event",
   components: {
-    EventPageItem,
-    MySearchbar
+    EventThumbList,
+    MySearchbar,
   },
   data: function() {
     return {
+      isSpeaker: "no",
       search: "",
       events: [],
     };
@@ -39,7 +50,6 @@ export default {
   },
   computed: {
     filteredEvents: function() {
-
       return this.events.filter((event) => {
         let byName =
           event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;

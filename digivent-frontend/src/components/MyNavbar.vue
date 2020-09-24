@@ -47,7 +47,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "@/style/_variables.scss";
 .navbar {
   width: 100%;
   display: flex;
