@@ -17,6 +17,7 @@ router.param("id", (req, res, next, id) => {
 
 router.get("/", (req, res, next) => {
   Event.find({})
+    .select("image name speaker")
     .sort({ createdAt: "desc" })
     .then((results) => {
       return res.send(results);
