@@ -10,7 +10,10 @@
 <script>
 export default {
   name: "SpeakerName",
-  props: { eventId: String },
+  props: { 
+    speakerId: {} 
+    },
+
   data: function() {
     return {
       speaker: {},
@@ -18,18 +21,20 @@ export default {
   },
   methods: {
     getSpeaker: function() {
-      const id = this.eventId;
-      console.log(id);
+      const id = this.speakerId;
       this.$http
-        .get(`${process.env.VUE_APP_API_URL}events/${id}/speaker`)
+        .get(`${process.env.VUE_APP_API_URL}speakers/${id}`)
         .then(function(data) {
           this.speaker = data.body;
         });
     },
   },
+
   created: function() {
-    this.getSpeaker();
+      this.$watch('$props', this.getSpeaker, { deep: true })
   },
+
+
 };
 </script>
 

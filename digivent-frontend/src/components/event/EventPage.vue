@@ -1,30 +1,23 @@
 <template>
   <div>
-    <input v-model="search" type="text" id="search" />
+    <MySearchbar v-model="search" />
     <router-link :to="{ name: 'edit' }">New event</router-link>
-    <div class="contents">
-      <div class="contents__box" v-for="(event, i) in filteredEvents" :key="i">
-        <router-link
-          v-bind:to="{ name: 'details', params: { eventId: event._id } }"
-        >
-          <div class="contents__img">
-            <img :src="event.image" />
-          </div>
-          <h2>{{ event.name }}</h2>
-          <SpeakerName :eventId="event._id" />
-        </router-link>
-      </div>
-    </div>
+    
+    <keep-alive>
+        <EventPageItem :events="filteredEvents"/>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import SpeakerName from "./EventPageSpeaker";
+import MySearchbar from "../MySearchbar";
+import EventPageItem from "../event/EventPageItem";
 
 export default {
   name: "event",
   components: {
-    SpeakerName,
+    EventPageItem,
+    MySearchbar
   },
   data: function() {
     return {
@@ -46,6 +39,7 @@ export default {
   },
   computed: {
     filteredEvents: function() {
+
       return this.events.filter((event) => {
         let byName =
           event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
