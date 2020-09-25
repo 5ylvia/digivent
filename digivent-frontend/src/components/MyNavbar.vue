@@ -1,13 +1,13 @@
 <template>
   <div class="navbar">
-    <router-link v-bind:to="'/events'">HOME</router-link>
-    <router-link v-if="loggedIn === 'yes'" v-bind:to="'/login'"
-      >Login</router-link
-    >
-    <a v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href>Log Out</a>
-    <router-link :to="'/events'">QUESTION</router-link>
-    <router-link :to="'/events'">MY EVENTS</router-link>
-    <router-link :to="'/events'">PROFILE</router-link>
+    <img src="@/assets/logoIcon.svg" alt="">
+    <router-link v-bind:to="'/events'">Home</router-link>
+    <router-link :to="'/events'">Questions</router-link>
+    <router-link :to="'/events'">My Events</router-link>
+    <router-link :to="'/profile'">Profile</router-link>
+        <a v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href>Log Out</a>
+    <router-link v-else v-bind:to="'/login'">Login</router-link>
+
   </div>
 </template>
 
@@ -26,6 +26,8 @@ export default {
       localStorage.loggedIn = "no";
       localStorage.removeItem("userName");
       localStorage.removeItem("userId");
+      localStorage.removeItem("speakerName");
+      localStorage.removeItem("speakerId");
       EventBus.$emit("$loggedIn");
       // redirect to login page
       this.$router.push({ path: "/login" });
@@ -33,8 +35,6 @@ export default {
     setLoggedIn: function() {
       console.log("login");
       localStorage.loggedIn = "yes";
-      localStorage.removeItem("userName");
-      localStorage.removeItem("userId");
       this.loggedIn = localStorage.loggedIn;
       this.userName = localStorage.userName;
     },
@@ -53,5 +53,14 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  background-color: $primary;
+  a {color: $natural-light;}
+}
+.router-link-active {
+    color: red;
+}
+img {
+  width: 50px;
+  height: 50px;
 }
 </style>
