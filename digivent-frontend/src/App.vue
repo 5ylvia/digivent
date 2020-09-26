@@ -25,6 +25,7 @@ export default {
   font-weight: 300;
   margin: 0;
   box-sizing: border-box;
+  color: black;
 }
 h1,
 h2 {

@@ -3,6 +3,8 @@
 $primary: #05386b;
 $secondary: #5cdb95;
 $secondary-dark: #379683;
+$natural-dark: #5f5f5f;
+$natural-light: #edf5e1;
 
 // fonts
 @mixin heading-large {
@@ -18,7 +20,7 @@ $secondary-dark: #379683;
 }
 
 @mixin small-heading {
-  background: #5f5f5f;
+  background: $natural-dark;
 }
 
 /* Button/Primary */

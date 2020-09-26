@@ -112,11 +112,9 @@ export default {
   display: flex;
   align-items: center;
   overflow: hidden;
-
   &__thumb {
     @include thumb-img;
   }
-
   &__main {
     width: 100%;
     min-width: 600px;

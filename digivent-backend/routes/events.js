@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Event = require("../models/Event");
 const Speaker = require("../models/Speaker.js");
+const { populate } = require("../models/Event");
 
 router.param("id", (req, res, next, id) => {
   Event.findById(id)
@@ -36,6 +37,10 @@ router.get("/:id", (req, res, next) => {
     })
     .catch(next);
 });
+
+// router.get("/:id", (req, res, next) => {
+//   return res.status(200).send(req.event);
+// });
 
 router.get("/:id/speaker", (req, res, next) => {
   Speaker.find({ _id: req.event.speaker })

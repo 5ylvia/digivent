@@ -83,6 +83,8 @@
 <script>
 import EventBus from "../../eventBus.js";
 export default {
+  name: "login",
+
   data: function() {
     return {
       user: {
@@ -127,7 +129,7 @@ export default {
             localStorage.userName = user.userName;
             localStorage.userId = response.body._id;
             EventBus.$emit("$loggedIn");
-            this.$router.push({ path: "/" });
+            this.$router.push({ path: "/events" });
           }
         },
         function(response) {

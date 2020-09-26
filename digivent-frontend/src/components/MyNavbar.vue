@@ -57,15 +57,13 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: #05386b;
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
+  background-color: $primary;
+  a {
+    color: $natural-light;
+  }
 }
-.router-link-exact-active {
-  color: rgb(85, 85, 85) !important;
+.router-link-active {
+  color: red;
 }
 .text {
   color: white;
