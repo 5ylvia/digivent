@@ -16,9 +16,9 @@ router.param("id", (req, res, next, id) => {
     .catch(next);
 });
 
+// Get events with speaker's name"
 router.get("/", (req, res, next) => {
   Event.find({})
-    .select("name image speaker")
     .populate("speaker", "firstName lastName")
     .sort({ createdAt: "desc" })
     .exec()
@@ -29,6 +29,7 @@ router.get("/", (req, res, next) => {
     .catch(next);
 });
 
+// Get event by Id with speaker's name and image
 router.get("/:id", (req, res, next) => {
   Event.findById(req.event.id)
     .populate("speaker", "firstName lastName image")
@@ -38,10 +39,7 @@ router.get("/:id", (req, res, next) => {
     .catch(next);
 });
 
-// router.get("/:id", (req, res, next) => {
-//   return res.status(200).send(req.event);
-// });
-
+// Get speaker's detail by event Id
 router.get("/:id/speaker", (req, res, next) => {
   Speaker.find({ _id: req.event.speaker })
     .sort({ createdAt: "desc" })
@@ -53,16 +51,17 @@ router.get("/:id/speaker", (req, res, next) => {
 });
 
 // Post new event
-// router.post("/", (req, res, next) => {
-//   const event = new Event(req.body);
-//   event
-//     .save()
-//     .then((result) => {
-//       return res.status(201).send(result);
-//     })
-//     .catch(next);
-// });
+router.post("/", (req, res, next) => {
+  const event = new Event(req.body);
+  event
+    .save()
+    .then((result) => {
+      return res.status(201).send(result);
+    })
+    .catch(next);
+});
 
+// Edit event
 router.put("/:id", (req, res, next) => {
   Event.findByIdAndUpdate(req.event.id, req.body)
     .then((event) => {
@@ -71,6 +70,7 @@ router.put("/:id", (req, res, next) => {
     .catch(next);
 });
 
+// Delete event
 router.delete("/:id", (req, res, next) => {
   Event.findByIdAndDelete(req.event.id)
     .then((event) => {

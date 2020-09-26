@@ -2,7 +2,6 @@ const router = require("express").Router();
 const User = require("../models/User.js");
 const Event = require("../models/Event.js");
 
-
 router.param("id", (req, res, next, id) => {
   User.findById(id)
     .then((user) => {
@@ -15,7 +14,6 @@ router.param("id", (req, res, next, id) => {
     })
     .catch(next);
 });
-
 
 router.get("/", (req, res, next) => {
   User.find({})
@@ -53,30 +51,34 @@ router.delete("/:id", (req, res, next) => {
     res.status(200).send(result);
   });
 });
+
+// Get events details by userId
 router.get("/:id/events", (req, res, next) => {
-  User.find({ events : req.events })
-    .sort({ createdAt: "desc" })
+  User.findById(req.user.id)
+    .select("events")
+    .populate("events", "name date")
     .then((events) => {
-      return res.status(200).send(events);
+      return res.send(events);
     })
     .catch(next);
 });
 
+// book event
 router.put("/:id/events", (req, res, next) => {
   User.findByIdAndUpdate(req.user.id, req.body)
-  .then((event) => {
-    if (!req.user.events) {
-      req.user.events = [];
-    }
-    req.user.events.push(event);
-    req.user
-      .save()
-      .then((user) => {
-        res.status(201).send({ event: event, user: user });
-      })
-      .catch(next);
-})
-  .catch(next);
+    .then((event) => {
+      if (!req.user.events) {
+        req.user.events = [];
+      }
+      req.user.events.push(event);
+      req.user
+        .save()
+        .then((user) => {
+          res.status(201).send({ event: event, user: user });
+        })
+        .catch(next);
+    })
+    .catch(next);
 });
 
 router.post("/login", (req, res, next) => {
