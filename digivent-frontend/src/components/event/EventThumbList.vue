@@ -12,6 +12,7 @@
             <img :src="event.image" :alt="event.name" />
           </div>
           <h2>{{ event.name }}</h2>
+          <h3>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h3>
         </router-link>
       </div>
     </div>
@@ -22,24 +23,6 @@
 export default {
   name: "EventThumbList",
   props: ["events"],
-  data: function() {
-    return {
-      myEvents: this.events,
-      speaker: {},
-    };
-  },
-  methods: {
-    getSpeaker: function() {
-      const events = this.myEvents;
-      for (const event in events) {
-        this.speaker = event.speaker;
-        console.log(this.speaker);
-      }
-    },
-  },
-  created: function() {
-    this.getSpeaker();
-  },
 };
 </script>
 

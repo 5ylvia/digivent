@@ -17,8 +17,12 @@ router.param("id", (req, res, next, id) => {
 
 router.get("/", (req, res, next) => {
   Event.find({})
+    .select("name image speaker")
+    .populate("speaker", "firstName lastName")
     .sort({ createdAt: "desc" })
+    .exec()
     .then((results) => {
+      console.log("Get event with speaker's name");
       return res.send(results);
     })
     .catch(next);
@@ -32,6 +36,7 @@ router.get("/:id/speaker", (req, res, next) => {
   Speaker.find({ _id: req.event.speaker })
     .sort({ createdAt: "desc" })
     .then((speaker) => {
+      console.log("Get speaker by event");
       return res.status(200).send(speaker[0]);
     })
     .catch(next);

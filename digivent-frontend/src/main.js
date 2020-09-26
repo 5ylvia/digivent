@@ -24,8 +24,11 @@ const routes = [
     path: "/events/:eventId/details",
     component: () => import("./components/event-details/EventDetails.vue"),
     props: true,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem("userName")) return next("login");
+      next();
+    },
   },
-
   {
     name: "profilespeaker",
     path: "/profilespeaker",
