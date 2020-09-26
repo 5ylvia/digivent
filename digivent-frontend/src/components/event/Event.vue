@@ -2,14 +2,13 @@
   <div>
     <MySearchbar v-model="search" type="text" id="search" />
 
-    <!-- Speaker's view -->
-    <!-- <div v-if="isSpeaker" class="flexbox">
+    <div v-if="isSpeaker === 'yes'" class="flexbox">
       <h3>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h3>
       <h4>Check <a href="">your events</a></h4>
-      <div class="thumb--s" v-if="this.$route.path !== '/events'">
+      <div class="flexbox__thumb">
         <img :src="speaker.image" :alt="speaker.firstName" />
       </div>
-    </div> -->
+    </div>
 
     <h1>Explore</h1>
     <h2>What’s upcoming events</h2>
@@ -34,6 +33,7 @@ export default {
       isSpeaker: "no",
       search: "",
       events: [],
+      speaker: {},
     };
   },
   methods: {
@@ -46,6 +46,15 @@ export default {
     },
   },
   created: function() {
+    if (localStorage.speakerId) {
+      this.isSpeaker = "yes";
+      const id = localStorage.speakerId;
+      this.$http
+        .get(`${process.env.VUE_APP_API_URL}speakers/${id}`)
+        .then(function(data) {
+          this.speaker = data.body;
+        });
+    }
     this.getEvents();
   },
   computed: {

@@ -29,7 +29,13 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  return res.status(200).send(req.event);
+  Event.findById(req.event.id)
+    .populate("speaker", "firstName lastName image")
+    .then((event) => {
+      console.log(event);
+      return res.send(event);
+    })
+    .catch(next);
 });
 
 router.get("/:id/speaker", (req, res, next) => {

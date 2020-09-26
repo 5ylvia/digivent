@@ -1,8 +1,12 @@
 <template>
   <div>
     <h1>Log In</h1>
+    <div>
+      <h2>USER</h2>
+      <h2>SPEAKER</h2>
+    </div>
 
-    <form v-on:submit.prevent="checkForm">
+    <form class="user" v-on:submit.prevent="checkUser">
       <div v-if="errors.length">
         <p>
           <b>Please correct the following</b>
@@ -10,6 +14,13 @@
         <ul v-for="(error, index) in errors" v-bind:key="index">
           <li>{{ error }}</li>
         </ul>
+      </div>
+      <div class="id">
+        <div class="user">
+          <ul>
+            <a href>USER</a>
+          </ul>
+        </div>
       </div>
       <div>
         <label for="username">User Name</label>
@@ -19,6 +30,44 @@
         <label for="pasword">Password</label>
         <input
           v-model="user.password"
+          type="text"
+          name="password"
+          id="password"
+        />
+      </div>
+      <div>
+        <input type="submit" value="Log In" />
+      </div>
+    </form>
+    <form class="speaker" v-on:submit.prevent="checkSpeaker">
+      <div v-if="errors.length">
+        <p>
+          <b>Please correct the following</b>
+        </p>
+        <ul v-for="(error, index) in errors" v-bind:key="index">
+          <li>{{ error }}</li>
+        </ul>
+      </div>
+      <div class="id">
+        <div class="speaker">
+          <ul>
+            <a href>SPEAKER</a>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <label for="username">User Name</label>
+        <input
+          v-model="speaker.userName"
+          type="text"
+          name="name"
+          id="username"
+        />
+      </div>
+      <div>
+        <label for="pasword">Password</label>
+        <input
+          v-model="speaker.password"
           type="text"
           name="password"
           id="password"
@@ -40,11 +89,16 @@ export default {
         userName: "",
         password: "",
       },
+      speaker: {
+        userName: "",
+        password: "",
+      },
       errors: [],
     };
   },
   methods: {
-    checkForm: function(event) {
+    checkUser: function(event) {
+      console.log("user");
       event.preventDefault();
       this.errors = [];
       if (!this.user.userName) {
@@ -52,6 +106,17 @@ export default {
       }
       if (!this.errors.length) {
         this.loginUser(this.user);
+      }
+    },
+    checkSpeaker: function(event) {
+      console.log("speaker");
+      event.preventDefault();
+      this.errors = [];
+      if (!this.speaker.userName) {
+        this.errors.push("Username required");
+      }
+      if (!this.errors.length) {
+        this.loginSpeaker(this.speaker);
       }
     },
     loginUser(user) {
@@ -69,6 +134,25 @@ export default {
           this.errors.push(response.body);
         }
       );
+    },
+
+    loginSpeaker(speaker) {
+      this.$http
+        .post(`${process.env.VUE_APP_API_URL}speakers/login`, speaker)
+        .then(
+          function(response) {
+            if (response.body.userName) {
+              localStorage.loggedIn = "yes";
+              localStorage.speakerName = speaker.userName;
+              localStorage.speakerId = response.body._id;
+              EventBus.$emit("$loggedIn");
+              this.$router.push({ path: "/" });
+            }
+          },
+          function(response) {
+            this.errors.push(response.body);
+          }
+        );
     },
   },
 };

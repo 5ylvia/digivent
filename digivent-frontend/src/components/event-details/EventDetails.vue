@@ -27,37 +27,35 @@
       <div>
         <h3>Host</h3>
         <div class="flexbox__thumb">
-          <img :src="speaker.image" :alt="speaker.firstName" />
+          <img :src="event.speaker.image" :alt="event.speaker.firstName" />
         </div>
-        <h6>About host</h6>
-        <h3>{{ speaker.firstName }} {{ speaker.lastName }}</h3>
+        <h3>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h3>
       </div>
-      <input type="button" value="Ask question" />
     </div>
 
-    <!-- Speaker's view-->
-
-    <!-- <div class="flexbox">
-      <div>
-        <h3>Host</h3>
-        <div class="flexbox__thumb">
-          <img :src="speaker.image" :alt="speaker.firstName" />
-        </div>
-        <h3>{{ speaker.firstName }} {{ speaker.lastName }}</h3>
-      </div>
-    </div> -->
-    <h4>Event description</h4>
-    <p>{{ event.description }}</p>
-    <input type="button" value="Book" />
-
-    <!-- Speaker's view-->
-
-    <!-- <div class="flexbox">
+    <div v-if="isSpeaker === 'yes'" class="flexbox">
       <router-link :to="{ name: 'edit', params: { eventId: event._id } }">
         Edit event
       </router-link>
-      <a href v-on:click.prevent="deleteEvent(event._id)"> Delete Event </a>
-    </div> -->
+      <a href @click.prevent="deleteEvent(event._id)"> Delete Event </a>
+      <h4>Event description</h4>
+      <p>{{ event.description }}</p>
+    </div>
+
+    <div v-else>
+      <div class="flexbox">
+        <h6>About host</h6>
+        <input type="button" value="Ask question" />
+      </div>
+      <h4>Event description</h4>
+      <p>{{ event.description }}</p>
+      <router-link
+        @click.prevent="bookEvent(event._id)"
+        class="btn"
+        :to="{ name: 'book', params: { event: event } }"
+        >Book
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -67,8 +65,14 @@ export default {
 
   data: function() {
     return {
-      event: {},
-      speaker: {},
+      event: {
+        speaker: {
+          firstName: String,
+          lastName: String,
+          image: String,
+        },
+      },
+      isSpeaker: "no",
     };
   },
   mounted: function() {
@@ -80,12 +84,11 @@ export default {
       });
   },
   created: function() {
-    const id = this.$route.params.eventId;
-    this.$http
-      .get(`${process.env.VUE_APP_API_URL}events/${id}/speaker`)
-      .then(function(data) {
-        this.speaker = data.body;
-      });
+    if (localStorage.speakerId) {
+      console.log(this.event.speaker);
+      this.event.speaker._id = localStorage.speakerId;
+      this.isSpeaker = "yes";
+    }
   },
   methods: {
     deleteEvent: function(eventId) {
@@ -94,6 +97,10 @@ export default {
         .then(function() {
           this.$router.push({ path: "/events" });
         });
+    },
+    bookEvent: function(eventId) {
+      alert("book");
+      console.log(eventId);
     },
   },
 };
@@ -113,6 +120,11 @@ export default {
   &__main {
     width: 100%;
     min-width: 600px;
+    height: auto;
   }
+}
+
+.btn {
+  @include buttonprimary;
 }
 </style>

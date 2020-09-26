@@ -1,7 +1,8 @@
 // Colors
 
 $primary: #05386b;
-$secondary: #379683;
+$secondary: #5cdb95;
+$secondary-dark: #379683;
 
 // fonts
 @mixin heading-large {
@@ -26,13 +27,16 @@ $secondary: #379683;
   display: flex;
   flex-direction: column;
   padding: 22px 32px;
-  position: absolute;
-  height: 65px;
-  left: 57px;
-  right: 57px;
-  bottom: 367px;
-  background: #5cdb95;
+  // position: absolute;
+  // height: 65px;
+  // left: 57px;
+  // right: 57px;
+  // bottom: 367px;
+  background: $secondary;
   border-radius: 20px;
+  text-align: center;
+  font-weight: 400;
+  color: white;
 }
 
 @mixin secondarybutton {

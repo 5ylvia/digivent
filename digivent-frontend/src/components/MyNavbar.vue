@@ -1,13 +1,17 @@
 <template>
   <div class="navbar">
-    <router-link v-bind:to="'/events'">HOME</router-link>
-    <router-link v-if="loggedIn === 'no'" v-bind:to="'/login'"
+    <img src="@/assets/logo-icon.svg/" alt="" />
+
+    <router-link class="text" v-bind:to="'/events'">Home</router-link>
+    <router-link class="text" :to="'/'">Questions</router-link>
+    <router-link class="text" :to="'/my-events'">My Events</router-link>
+    <router-link class="text" :to="'/profile'">Profile</router-link>
+    <router-link class="text" v-if="loggedIn === 'no'" v-bind:to="'/login'"
       >Login</router-link
     >
-    <a v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href>Log Out</a>
-    <router-link :to="'/events'">QUESTION</router-link>
-    <router-link :to="'/events'">MY EVENTS</router-link>
-    <router-link :to="'/events'">PROFILE</router-link>
+    <a class="text" v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href
+      >Log Out</a
+    >
   </div>
 </template>
 
@@ -53,5 +57,22 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  background-color: #05386b;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
+.router-link-exact-active {
+  color: rgb(85, 85, 85) !important;
+}
+.text {
+  color: white;
+}
+
+img {
+  width: 50px;
+  height: 50px;
 }
 </style>

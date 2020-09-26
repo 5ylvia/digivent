@@ -22,7 +22,7 @@ const routes = [
   {
     name: "details",
     path: "/events/:eventId/details",
-    component: () => import("./components/event-details/EventDetails.vue"),
+    component: () => import("./components/event-details/EventDetails"),
     props: true,
     beforeEnter: (to, from, next) => {
       if (!localStorage.getItem("userName")) return next("login");
@@ -30,15 +30,15 @@ const routes = [
     },
   },
   {
-    name: "profilespeaker",
-    path: "/profilespeaker",
-    component: () => import("./components/profile/ProfileSpeaker.vue"),
+    name: "book",
+    path: "/booking",
+    component: () => import("./components/book/BookEvent"),
     props: true,
   },
   {
-    name: "profileuser",
-    path: "/profileuser",
-    component: () => import("./components/profile/ProfileUser.vue"),
+    name: "profile",
+    path: "/profile",
+    component: () => import("./components/profile/Profile"),
     props: true,
   },
   {
