@@ -23,7 +23,20 @@
 <script>
 export default {
   name: "book",
-  props: [event],
+  data: function() {
+    return {
+      event: {
+        speaker: {
+          firstName: String,
+          lastName: String,
+          image: String,
+        },
+      },
+    };
+  },
+  mounted: function() {
+    this.event = this.$attrs.event;
+  },
 };
 </script>
 

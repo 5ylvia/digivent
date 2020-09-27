@@ -44,8 +44,8 @@ router.get("/:id/speaker", (req, res, next) => {
   Speaker.find({ _id: req.event.speaker })
     .sort({ createdAt: "desc" })
     .then((speaker) => {
-      console.log("Get speaker by event");
-      return res.status(200).send(speaker[0]);
+      console.log("Get speaker data by eventId");
+      return res.status(200).send(speaker);
     })
     .catch(next);
 });

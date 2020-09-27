@@ -55,7 +55,7 @@ router.delete("/:id", (req, res, next) => {
 // Get events details by userId
 router.get("/:id/events", (req, res, next) => {
   User.findById(req.user.id)
-    .select("events")
+    // .select("events")
     .populate("events", "name date")
     .then((events) => {
       return res.send(events);
@@ -63,20 +63,12 @@ router.get("/:id/events", (req, res, next) => {
     .catch(next);
 });
 
-// book event
-router.put("/:id/events", (req, res, next) => {
-  User.findByIdAndUpdate(req.user.id, req.body)
-    .then((event) => {
-      if (!req.user.events) {
-        req.user.events = [];
-      }
-      req.user.events.push(event);
-      req.user
-        .save()
-        .then((user) => {
-          res.status(201).send({ event: event, user: user });
-        })
-        .catch(next);
+// Book event
+router.put("/:id/event", (req, res, next) => {
+  User.findByIdAndUpdate(req.user.id, { $addToSet: { events: req.body } })
+    .then((user) => {
+      console.log("put eventId in user array");
+      return res.status(201).send(user);
     })
     .catch(next);
 });

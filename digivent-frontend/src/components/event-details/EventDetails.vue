@@ -112,6 +112,7 @@ export default {
   display: flex;
   align-items: center;
   overflow: hidden;
+
   &__thumb {
     @include thumb-img;
   }

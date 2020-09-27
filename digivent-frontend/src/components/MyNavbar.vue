@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <img src="@/assets/logo-icon.svg/" alt="" />
+    <img src="@/assets/logo-icon.svg/" class="logo" alt="logo" />
 
     <router-link class="text" v-bind:to="'/events'">Home</router-link>
     <router-link class="text" :to="'/'">Questions</router-link>
@@ -69,8 +69,7 @@ export default {
   color: white;
 }
 
-img {
+.logo {
   width: 50px;
-  height: 50px;
 }
 </style>
