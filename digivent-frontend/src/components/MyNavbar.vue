@@ -9,9 +9,7 @@
     <router-link class="text" v-if="loggedIn === 'no'" v-bind:to="'/login'"
       >Login</router-link
     >
-    <a class="text" v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href
-      >Log Out</a
-    >
+    <a class="text" v-else @click.prevent="setLoggedOut" href>Log Out</a>
   </div>
 </template>
 
@@ -27,18 +25,16 @@ export default {
   },
   methods: {
     setLoggedOut: function() {
+      console.log("logout");
       localStorage.loggedIn = "no";
       localStorage.removeItem("userName");
       localStorage.removeItem("userId");
-      localStorage.removeItem("speakerName");
       localStorage.removeItem("speakerId");
       EventBus.$emit("$loggedIn");
-      // redirect to login page
-      this.$router.push({ path: "/login" });
+      this.$router.push({ path: "/" });
     },
     setLoggedIn: function() {
       console.log("login");
-      localStorage.loggedIn = "yes";
       this.loggedIn = localStorage.loggedIn;
       this.userName = localStorage.userName;
     },

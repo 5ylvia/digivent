@@ -1,12 +1,15 @@
 <template>
   <div>
     <h1>Log In</h1>
-    <div>
-      <h2>USER</h2>
-      <h2>SPEAKER</h2>
+    <div class="login">
+      <div class="formButton">
+        <button @click="show = true">User</button>
+
+        <button @click="show = false">Speaker</button>
+      </div>
     </div>
 
-    <form class="user" v-on:submit.prevent="checkUser">
+    <form v-if="show" class="user" v-on:submit.prevent="checkUser">
       <div v-if="errors.length">
         <p>
           <b>Please correct the following</b>
@@ -15,13 +18,7 @@
           <li>{{ error }}</li>
         </ul>
       </div>
-      <div class="id">
-        <div class="user">
-          <ul>
-            <a href>USER</a>
-          </ul>
-        </div>
-      </div>
+
       <div>
         <label for="username">User Name</label>
         <input v-model="user.userName" type="text" name="name" id="username" />
@@ -39,7 +36,7 @@
         <input type="submit" value="Log In" />
       </div>
     </form>
-    <form class="speaker" v-on:submit.prevent="checkSpeaker">
+    <form v-else v-on:submit.prevent="checkSpeaker">
       <div v-if="errors.length">
         <p>
           <b>Please correct the following</b>
@@ -48,15 +45,9 @@
           <li>{{ error }}</li>
         </ul>
       </div>
-      <div class="id">
-        <div class="speaker">
-          <ul>
-            <a href>SPEAKER</a>
-          </ul>
-        </div>
-      </div>
+
       <div>
-        <label for="username">User Name</label>
+        <label for="username"> Speaker Name</label>
         <input
           v-model="speaker.userName"
           type="text"
@@ -87,6 +78,7 @@ export default {
 
   data: function() {
     return {
+      show: true,
       user: {
         userName: "",
         password: "",
@@ -145,7 +137,7 @@ export default {
           function(response) {
             if (response.body.userName) {
               localStorage.loggedIn = "yes";
-              localStorage.speakerName = speaker.userName;
+              localStorage.userName = speaker.userName;
               localStorage.speakerId = response.body._id;
               EventBus.$emit("$loggedIn");
               this.$router.push({ path: "/" });
@@ -160,4 +152,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "@/style/_variables.scss";
+</style>
