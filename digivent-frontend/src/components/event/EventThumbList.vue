@@ -22,7 +22,7 @@
 <script>
 export default {
   name: "EventThumbList",
-  props: ["events"]
+  props: ["events"],
 };
 </script>
 
@@ -34,15 +34,15 @@ export default {
   overflow-x: auto;
   overflow-y: hidden;
   &__box {
-  margin: 20px;
+    margin: 20px;
   }
   &__img {
-  height: 400px;
-  width: 300px;
-  overflow: hidden;
+    height: 400px;
+    width: 300px;
+    overflow: hidden;
     img {
-    height: 100%;
-    width: auto;
+      height: 100%;
+      width: auto;
     }
   }
 }
