@@ -6,10 +6,11 @@
     <router-link class="text" :to="'/'">Questions</router-link>
     <router-link class="text" :to="'/my-events'">My Events</router-link>
     <router-link class="text" :to="'/profile'">Profile</router-link>
-    <router-link class="text" v-if="loggedIn === 'no'" v-bind:to="'/login'"
+        <a class="text" v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href>Log Out</a>
+
+    <router-link class="text" v-else v-bind:to="'/login'"
       >Login</router-link
     >
-    <a class="text" v-else @click.prevent="setLoggedOut" href>Log Out</a>
   </div>
 </template>
 

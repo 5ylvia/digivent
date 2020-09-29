@@ -33,8 +33,8 @@
       </div>
     </div>
 
-    <div v-if="isSpeaker === 'yes'" class="flexbox">
-      <router-link :to="{ name: 'edit', params: { eventId: event._id } }">
+    <div v-if="isSpeaker === 'yes'">
+      <router-link :to="{ name: 'edit', params: { eventId: event._id } }" @click="checkSpeaker">
         Edit event
       </router-link>
       <a href @click.prevent="deleteEvent(event._id)"> Delete Event </a>
@@ -114,6 +114,7 @@ export default {
 
 <style lang="scss">
 @import "@/style/_variables.scss";
+
 .flexbox {
   display: flex;
   align-items: center;
@@ -131,8 +132,5 @@ export default {
 
 .btn {
   @include buttonprimary;
-}
-path {
-  fill: red;
 }
 </style>
