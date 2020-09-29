@@ -60,10 +60,24 @@ export default {
   computed: {
     filteredEvents: function() {
       return this.events.filter((event) => {
-        let byName =
+        let byEvent =
           event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
-        if (byName === true) {
-          return byName;
+        if (byEvent === true) {
+          return byEvent;
+        }
+        let byFirstName =
+          event.speaker.firstName
+            .toLowerCase()
+            .indexOf(this.search.toLowerCase()) > -1;
+        if (byFirstName === true) {
+          return byFirstName;
+        }
+        let byLastName =
+          event.speaker.lastName
+            .toLowerCase()
+            .indexOf(this.search.toLowerCase()) > -1;
+        if (byLastName === true) {
+          return byLastName;
         }
       });
     },
@@ -82,5 +96,5 @@ export default {
   &__thumb {
     @include thumb-img;
   }
-}  
+}
 </style>
