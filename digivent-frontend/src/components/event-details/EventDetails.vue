@@ -47,7 +47,10 @@
     <div v-else>
       <div class="flexbox">
         <h6>About host</h6>
-        <input type="button" value="Ask question" />
+        <router-link
+          :to="{ name: 'PostQuestion', params: { eventId: event._id } }"
+          >Ask question
+        </router-link>
       </div>
       <h4>Event description</h4>
       <p>{{ event.description }}</p>

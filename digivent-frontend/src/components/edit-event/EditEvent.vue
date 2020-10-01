@@ -74,7 +74,11 @@ export default {
         time: null,
         address: null,
         image: null,
-        speaker: Object,
+        speaker: {
+          image: String,
+          firstName: String,
+          lastName: String,
+        },
       },
     };
   },
@@ -97,11 +101,15 @@ export default {
     },
 
     createEvent: function(event) {
+      const speakerId = localStorage.speakerId;
       console.log(event);
       this.$http
-        .post(`${process.env.VUE_APP_API_URL}events`, event)
+        .post(
+          `${process.env.VUE_APP_API_URL}speakers/${speakerId}/events`,
+          event
+        )
         .then(function() {
-          this.$router.push({ path: "/events" });
+          this.$router.push({ path: "/" });
         });
     },
 
@@ -109,11 +117,17 @@ export default {
       this.$http
         .put(`${process.env.VUE_APP_API_URL}events/${event._id}`, event)
         .then(function() {
-          this.$router.push({ path: "/events" });
+          this.$router.push({ path: "/" });
         });
     },
   },
   created: function() {
+    const speakerId = localStorage.speakerId;
+    this.$http
+      .get(`${process.env.VUE_APP_API_URL}speakers/${speakerId}`)
+      .then(function(data) {
+        this.event.speaker = data.body;
+      });
     const eventId = this.$route.params.eventId;
     if (eventId) {
       this.editing = true;

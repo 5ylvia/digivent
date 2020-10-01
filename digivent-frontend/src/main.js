@@ -62,6 +62,12 @@ const routes = [
     component: () => import("./components/register/RegisterSpeaker"),
     props: true,
   },
+  {
+    name: "PostQuestion",
+    path: "/post-question",
+    component: () => import("./components/post-question/PostQuestion"),
+    props: true,
+  },
 ];
 
 const router = new VueRouter({
