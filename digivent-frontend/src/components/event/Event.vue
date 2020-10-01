@@ -5,7 +5,7 @@
     <div v-if="isSpeaker === 'yes'">
       <h3>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h3>
       <h4>Check <a href="">your events</a></h4>
-      <div class="flexbox__thumb">
+      <div class="thumb">
         <img :src="speaker.image" :alt="speaker.firstName" />
       </div>
     </div>
@@ -92,9 +92,8 @@ export default {
   display: flex;
   align-items: center;
   overflow: hidden;
-
-  &__thumb {
-    @include thumb-img;
-  }
+}
+.thumb {
+  @include thumb-img;
 }
 </style>

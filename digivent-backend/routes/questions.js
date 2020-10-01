@@ -16,6 +16,8 @@ router.param("id", (req, res, next, id) => {
 
 router.get("/", (req, res, next) => {
   Question.find({})
+    .populate("event", "name")
+    .populate("speaker", "firstName lastName")
     .sort({ createdAt: "desc" })
     .then((results) => {
       return res.send(results);
@@ -30,6 +32,20 @@ router.get("/:id", (req, res, next) => {
       return res.send(question);
     })
     .catch(next);
+});
+
+router.delete("/:id", (req, res, next) => {
+  Question.findByIdAndDelete(req.question.id)
+    .then((question) => {
+      res.status(204).send(question);
+    })
+    .catch(next);
+
+  // User.find({ questions: [req.question.id] })
+  //   .then((user) => {
+  //     res.status(204).send(user);
+  //   })
+  //   .catch(next);
 });
 
 module.exports = router;

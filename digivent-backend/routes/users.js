@@ -98,7 +98,6 @@ router.post("/:id/question", (req, res, next) => {
       if (!req.user.questions) {
         req.user.questions = [];
       }
-      console.log(question);
       req.user.questions.push(question);
       req.user
         .save()

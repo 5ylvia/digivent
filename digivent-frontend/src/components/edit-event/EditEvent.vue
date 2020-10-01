@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Host details</h3>
-    <div class="flexbox__thumb">
+    <div class="thumb thumb--b">
       <img :src="event.speaker.image" :alt="event.speaker.firstName" />
     </div>
     <p>Host name</p>
@@ -142,15 +142,17 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/style/_variables.scss";
 .flexbox {
   display: flex;
   align-items: center;
   overflow: hidden;
-
-  &__thumb {
-    @include thumb-img;
+}
+.thumb {
+  @include thumb-img;
+  &--b {
+    @include thumb-img--b;
   }
 }
 </style>

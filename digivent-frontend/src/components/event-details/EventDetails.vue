@@ -26,7 +26,7 @@
     <div class="flexbox">
       <div>
         <h3>Host</h3>
-        <div class="flexbox__thumb">
+        <div class="thumb">
           <img :src="event.speaker.image" :alt="event.speaker.firstName" />
         </div>
         <h3>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h3>
@@ -47,9 +47,8 @@
     <div v-else>
       <div class="flexbox">
         <h6>About host</h6>
-        <router-link
-          :to="{ name: 'PostQuestion', params: { eventId: event._id } }"
-          >Ask question
+        <router-link :to="{ name: 'Question', params: { eventId: event._id } }"
+          >Questions
         </router-link>
       </div>
       <h4>Event description</h4>
@@ -139,17 +138,15 @@ export default {
   display: flex;
   align-items: center;
   overflow: hidden;
-
-  &__thumb {
-    @include thumb-img;
-  }
   &__main {
     width: 100%;
     min-width: 600px;
     height: auto;
   }
 }
-
+.thumb {
+  @include thumb-img;
+}
 .btn {
   @include buttonprimary;
 }

@@ -61,6 +61,7 @@ router.get("/:id/events", (req, res, next) => {
     .catch(next);
 });
 
+//Post event by speakerId
 router.post("/:id/events", (req, res, next) => {
   const event = new Event(req.body);
   event.speaker = req.speaker.id;
