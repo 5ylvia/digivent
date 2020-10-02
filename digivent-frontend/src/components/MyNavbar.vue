@@ -3,7 +3,7 @@
     <img src="@/assets/logo-icon.svg/" class="logo" alt="logo" />
 
     <router-link class="text" v-bind:to="'/'">Home</router-link>
-    <router-link class="text" :to="'/questions'">Questions</router-link>
+    <router-link class="text" :to="'/my-questions'">Questions</router-link>
     <router-link class="text" :to="'/my-events'">My Events</router-link>
     <router-link class="text" :to="'/profile'">Profile</router-link>
     <a class="text" v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href

@@ -74,6 +74,12 @@ const routes = [
     component: () => import("./components/question/Question"),
     props: true,
   },
+  {
+    name: "MyQuestions",
+    path: "/my-questions",
+    component: () => import("./components/question/MyQuestions"),
+    props: true,
+  },
 ];
 
 const router = new VueRouter({

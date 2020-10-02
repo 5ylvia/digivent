@@ -48,7 +48,7 @@
       <div class="flexbox">
         <h6>About host</h6>
         <router-link :to="{ name: 'Question', params: { eventId: event._id } }"
-          >Questions
+          >View Questions
         </router-link>
       </div>
       <h4>Event description</h4>

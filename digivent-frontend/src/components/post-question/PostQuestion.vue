@@ -6,12 +6,14 @@
       <img :src="question.speaker.image" :alt="question.speaker.firstName" />
     </div>
     <p>Host name</p>
-    <h3>
-      {{ question.speaker.firstName }}
-      {{ question.speaker.lastName }}
-    </h3>
-    <h3>{{ question.event.name }}</h3>
+    <h3>{{ question.speaker.firstName }} {{ question.speaker.lastName }}</h3>
+    <p>Event name</p>
 
+    <h3>{{ question.event.name }}</h3>
+    <router-link
+      :to="{ name: 'Question', params: { eventId: question.event._id } }"
+      >View Questions
+    </router-link>
     <p>User name</p>
     <h3>{{ userName }}</h3>
 
