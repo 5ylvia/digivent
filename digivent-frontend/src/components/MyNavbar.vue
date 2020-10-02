@@ -17,7 +17,7 @@
 <script>
 import EventBus from "../eventBus";
 export default {
-  name: "MyNavbar",
+  name: "navbar",
   data: function() {
     return {
       loggedIn: "no",
@@ -50,6 +50,7 @@ export default {
 
 <style lang="scss">
 @import "@/style/_variables.scss";
+
 .navbar {
   width: 100%;
   display: flex;

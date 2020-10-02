@@ -3,6 +3,7 @@ const Event = require("../models/Event");
 const Speaker = require("../models/Speaker.js");
 const Question = require("../models/Question.js");
 
+
 router.param("id", (req, res, next, id) => {
   Event.findById(id)
     .then((event) => {

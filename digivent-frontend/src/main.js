@@ -78,6 +78,11 @@ const routes = [
     name: "MyQuestions",
     path: "/my-questions",
     component: () => import("./components/question/MyQuestions"),
+  },
+    {
+    name:"speaker-detail",
+    path:"/speaker-detail",
+    component:() => import("./components/speaker-detail/SpeakerDetail.vue"),
     props: true,
   },
 ];

@@ -46,7 +46,11 @@
 
     <div v-else>
       <div class="flexbox">
-        <h6>About host</h6>
+        <router-link
+          :to="{ name: 'speaker-detail', params: { speakerId: event.speaker } }"
+        >
+          <h6>About host</h6>
+        </router-link>
         <router-link :to="{ name: 'Question', params: { eventId: event._id } }"
           >View Questions
         </router-link>
@@ -67,7 +71,6 @@
 <script>
 export default {
   name: "EventDetails",
-
   data: function() {
     return {
       event: {
@@ -117,6 +120,7 @@ export default {
           alert("Booking confirmed!");
         });
     },
+
     checkSpeaker: function(speakerId) {
       if (localStorage.speakerId !== speakerId) {
         alert("You don't have permission to do.");
@@ -126,7 +130,6 @@ export default {
           params: { eventId: this.event._id },
         });
       }
-    },
   },
 };
 </script>
