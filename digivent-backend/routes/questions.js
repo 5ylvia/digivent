@@ -40,12 +40,6 @@ router.delete("/:id", (req, res, next) => {
       res.status(204).send(question);
     })
     .catch(next);
-
-  // User.find({ questions: [req.question.id] })
-  //   .then((user) => {
-  //     res.status(204).send(user);
-  //   })
-  //   .catch(next);
 });
 
 module.exports = router;
