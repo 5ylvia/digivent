@@ -85,6 +85,12 @@ const routes = [
     component: () => import("./components/speaker-detail/SpeakerDetail.vue"),
     props: true,
   },
+  {
+    name: "user-reply-question",
+    path: "/user-reply-question",
+    component: () => import("./components/question-reply/UserQuestionReply"),
+    props: true,
+  },
 ];
 
 const router = new VueRouter({
