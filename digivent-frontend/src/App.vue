@@ -20,6 +20,7 @@ export default {
 @import "@/style/_variables.scss";
 
 * {
+  // border: 1px solid red;
   font-family: "Roboto", sans-serif;
   text-decoration: none;
   font-weight: 300;
@@ -30,5 +31,10 @@ export default {
 h1,
 h2 {
   font-weight: 400;
+}
+#app {
+  width: 100vw;
+  height: 100%;
+  padding-bottom: 100px;
 }
 </style>

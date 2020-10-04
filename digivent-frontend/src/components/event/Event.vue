@@ -5,6 +5,7 @@
     <div v-if="isSpeaker === 'yes'">
       <h3>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h3>
       <h4>Check <a href="">your events</a></h4>
+
       <div class="thumb">
         <img :src="speaker.image" :alt="speaker.firstName" />
       </div>
@@ -28,7 +29,7 @@ export default {
     EventThumbList,
     Searchbar,
   },
-  data: function() {
+  data: function () {
     return {
       isSpeaker: "no",
       search: "",
@@ -37,28 +38,28 @@ export default {
     };
   },
   methods: {
-    getEvents: function() {
+    getEvents: function () {
       this.$http
         .get(`${process.env.VUE_APP_API_URL}events`)
-        .then(function(data) {
+        .then(function (data) {
           this.events = data.body;
         });
     },
   },
-  created: function() {
+  created: function () {
+    this.getEvents();
     if (localStorage.speakerId) {
       this.isSpeaker = "yes";
       const id = localStorage.speakerId;
       this.$http
         .get(`${process.env.VUE_APP_API_URL}speakers/${id}`)
-        .then(function(data) {
+        .then(function (data) {
           this.speaker = data.body;
         });
     }
-    this.getEvents();
   },
   computed: {
-    filteredEvents: function() {
+    filteredEvents: function () {
       return this.events.filter((event) => {
         let byEvent =
           event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
