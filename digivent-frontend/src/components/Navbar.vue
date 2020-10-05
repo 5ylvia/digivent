@@ -1,21 +1,23 @@
 <template>
   <div class="navbar">
-    <img src="../../public/logo.png" alt="">
-    <router-link class="text"  v-bind:to="'/'">Home</router-link>
-    
-    <router-link  class="text" :to="'/events'">Questions</router-link>
-    <router-link class="text" :to="'/events'">My Events</router-link>
-    <router-link class="text" :to="'/profile'">Profile</router-link>
-    <router-link class="text"  v-if="loggedIn === 'no'" v-bind:to="'/login'">Login</router-link>
-    <a class="text"  v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href>Log Out</a>
+    <img src="@/assets/logo-icon.svg/" class="logo" alt="logo" />
 
+    <router-link class="text" v-bind:to="'/'">Home</router-link>
+    <router-link class="text" :to="'/my-questions'">Questions</router-link>
+    <router-link class="text" :to="'/my-events'">My Events</router-link>
+    <router-link class="text" :to="'/profile'">Profile</router-link>
+    <a class="text" v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut" href
+      >Log Out</a
+    >
+
+    <router-link class="text" v-else v-bind:to="'/login'">Login</router-link>
   </div>
 </template>
 
 <script>
 import EventBus from "../eventBus";
 export default {
-  name: "MyNavbar",
+  name: "navbar",
   data: function() {
     return {
       loggedIn: "no",
@@ -24,18 +26,16 @@ export default {
   },
   methods: {
     setLoggedOut: function() {
+      console.log("logout");
       localStorage.loggedIn = "no";
       localStorage.removeItem("userName");
       localStorage.removeItem("userId");
-      localStorage.removeItem("speakerName");
       localStorage.removeItem("speakerId");
       EventBus.$emit("$loggedIn");
-      // redirect to login page
       this.$router.push({ path: "/login" });
     },
     setLoggedIn: function() {
       console.log("login");
-      localStorage.loggedIn = "yes";
       this.loggedIn = localStorage.loggedIn;
       this.userName = localStorage.userName;
     },
@@ -48,13 +48,22 @@ export default {
 };
 </script>
 
-<style>
-/* @import "@/style/_variables.scss"; */
+<style lang="scss">
+@import "@/style/_variables.scss";
+
 .navbar {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: #05386b;
+  background-color: $primary;
+  a {
+    color: $natural-light;
+  }
+}
+.router-link-active {
+  color: red;
+}
+.text {
   color: white;
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -64,12 +73,8 @@ export default {
 .router-link-exact-active {
     color: rgb(85, 85, 85)!important;
 }
-.text{
-    color: white;
-}
 
-img {
+.logo {
   width: 50px;
-  height: 50px;
 }
 </style>

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Speaker = require("../models/Speaker.js");
 const Event = require("../models/Event.js");
+const Question = require("../models/Question.js");
 
 router.param("id", (req, res, next, id) => {
   Speaker.findById(id)
@@ -54,6 +55,7 @@ router.delete("/:id", (req, res, next) => {
 
 router.get("/:id/events", (req, res, next) => {
   Event.find({ speaker: req.speaker.id })
+  .populate("speaker")
     .sort({ createdAt: "desc" })
     .then((events) => {
       return res.status(200).send(events);
@@ -61,6 +63,7 @@ router.get("/:id/events", (req, res, next) => {
     .catch(next);
 });
 
+//Post event by speakerId
 router.post("/:id/events", (req, res, next) => {
   const event = new Event(req.body);
   event.speaker = req.speaker.id;
@@ -74,9 +77,22 @@ router.post("/:id/events", (req, res, next) => {
       req.speaker
         .save()
         .then((speaker) => {
+          console.log("Post event with speaker's name");
           res.status(201).send({ event: event, speaker: speaker });
         })
         .catch(next);
+    })
+    .catch(next);
+});
+
+// Get questions by speaker Id
+router.get("/:id/questions", (req, res, next) => {
+  Question.find({ speaker: req.params.id })
+    .populate("user", "image userName")
+    .sort({ createdAt: "desc" })
+    .then((questions) => {
+      console.log("Get questions by eventId");
+      return res.status(200).send(questions);
     })
     .catch(next);
 });
@@ -85,7 +101,6 @@ router.post("/login", (req, res, next) => {
   if (!req.body.userName) {
     return res.status(422).send("username can't be blank");
   }
-
 
   Speaker.findOne({ userName: req.body.userName })
 

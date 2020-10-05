@@ -9,30 +9,43 @@ Vue.use(VueRouter);
 const routes = [
   {
     name: "event",
-    path: "/events",
-    component: () => import("./components/event/EventPage"),
+    path: "/",
+    component: () => import("./components/event/Event"),
     props: true,
   },
   {
     name: "edit",
-    path: "/events/:eventId?/edit",
+    path: "/:eventId?/edit",
     component: () => import("./components/edit-event/EditEvent"),
     props: true,
-  }, 
+  },
   {
-    name: "details",
-    path: "/events/:eventId/details",
-    component: () => import("./components/event-details/EventDetails.vue"),
+    name: "detail",
+    path: "/:eventId/detail",
+    component: () => import("./components/event-detail/EventDetail"),
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem("userName")) return next("login");
+      next();
+    },
+  },
+  {
+    name: "book",
+    path: "/booking",
+    component: () => import("./components/book/BookEvent"),
     props: true,
   },
-
   {
     name: "profile",
     path: "/profile",
-    component: () => import("./components/profile/Profile.vue"),
+    component: () => import("./components/profile/Profile"),
     props: true,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem("userName")) return next("login");
+      next();
+    },
   },
-      {
+  {
     name: "login",
     path: "/login",
     component: () => import("./components/login/Login"),
@@ -49,6 +62,37 @@ const routes = [
     component: () => import("./components/register/RegisterSpeaker"),
     props: true,
   },
+  {
+    name: "post-question",
+    path: "/post-question",
+    component: () => import("./components/post-question/PostQuestion"),
+    props: true,
+  },
+  {
+    name: "question",
+    path: "/question",
+    component: () => import("./components/question/Question"),
+    props: true,
+  },
+  {
+    name: "my-questions",
+    path: "/my-questions",
+    component: () => import("./components/question/MyQuestions"),
+  },
+  {
+    name: "speaker-detail",
+    path: "/speaker-detail",
+    component: () => import("./components/speaker-detail/SpeakerDetail.vue"),
+    props: true,
+  }
+  
+  ,
+  {
+    name: "my-events",
+    path: "/my-events",
+    component: () => import("./components/my-event/MyEvent.vue"),
+    props: true,
+  }
 ];
 
 const router = new VueRouter({
