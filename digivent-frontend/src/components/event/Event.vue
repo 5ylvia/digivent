@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <Searchbar v-model="search" type="text" id="search" />
-
-    <div v-if="isSpeaker === 'yes'">
-      <h3>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h3>
-      <h4>Check <a href="">your events</a></h4>
-
+  <div class="body-main">
+    <Searchbar v-model="search" class="search-bar" />
+    <div v-if="isSpeaker === 'yes'" class="container--right">
+      <h4>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h4>
+      <h4>Check <a href="" class="color">your events</a></h4>
       <div class="thumb">
         <img :src="speaker.image" :alt="speaker.firstName" />
       </div>
     </div>
-
-    <h1>Explore</h1>
-    <h2>What’s upcoming events</h2>
-
-    <router-link :to="{ name: 'edit' }">New event</router-link>
-    <EventThumbList :events="filteredEvents" />
+    <div class="container--bottom">
+      <h1>Explore</h1>
+      <h3>What’s upcoming events</h3>
+      <EventThumbList :events="filteredEvents" />
+    </div>
   </div>
 </template>
 
@@ -96,5 +93,35 @@ export default {
 }
 .thumb {
   @include thumb-img;
+}
+
+.search-bar {
+  top: 0;
+  left: 0;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.color {
+  color: $secondary;
+}
+.container {
+  // display: flex;
+  &--bottom {
+    padding-top: 80px;
+    // display: flex;
+    // flex-direction: column;
+    // align-self: flex-end;
+  }
+  &--right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 16px;
+    position: absolute;
+    right: 0;
+  }
 }
 </style>

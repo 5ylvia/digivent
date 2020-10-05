@@ -79,11 +79,6 @@ export default {
 <style lang="scss">
 @import "@/style/_variables.scss";
 
-.body-inner {
-  width: 90%;
-  margin: 0 5%;
-}
-
 .container {
   @include message-box;
 }

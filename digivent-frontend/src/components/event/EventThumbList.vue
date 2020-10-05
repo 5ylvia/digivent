@@ -12,7 +12,7 @@
             <img :src="event.image" :alt="event.name" />
           </div>
           <h2>{{ event.name }}</h2>
-          <h3>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h3>
+          <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
         </router-link>
       </div>
     </div>
@@ -34,11 +34,13 @@ export default {
   overflow-x: auto;
   overflow-y: hidden;
   &__box {
-    margin: 20px;
+    margin-right: 20px;
   }
   &__img {
+    border-radius: 20px;
     height: 400px;
     width: 300px;
+    margin: 8px 0;
     overflow: hidden;
     img {
       height: 100%;

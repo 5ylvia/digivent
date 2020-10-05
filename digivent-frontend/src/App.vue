@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div id="header"></div>
     <Navbar />
     <router-view></router-view>
   </div>
@@ -36,5 +37,24 @@ h2 {
   width: 100vw;
   height: 100%;
   padding-bottom: 100px;
+}
+#header {
+  width: 100%;
+  height: 100px;
+  background: $primary;
+}
+.body {
+  &-main {
+    margin-left: 16px;
+  }
+  &-inner {
+    width: 100%;
+    padding: 0 16px;
+  }
+  // &--flex {
+  //   flex-direction: column;
+  //   display: flex;
+  //   align-content: flex-end;
+  // }
 }
 </style>
