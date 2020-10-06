@@ -3,7 +3,7 @@
     <Searchbar v-model="search" class="search-bar" />
     <div v-if="isSpeaker === 'yes'" class="container container--right">
       <h4>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h4>
-      <h4>Check <a href="" class="color">your events</a></h4>
+      <h4>Check <a href="/my-events" class="color">your events</a></h4>
       <div class="thumb">
         <img :src="speaker.image" :alt="speaker.firstName" />
       </div>
