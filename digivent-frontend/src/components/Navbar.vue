@@ -111,6 +111,8 @@ export default {
   z-index: 1;
   background-color: $primary;
   height: 90px;
+  position: absolute;
+  top: 0;
   .link {
     color: $secondary-light;
     width: 100%;
@@ -129,6 +131,7 @@ export default {
     background-color: white;
     position: fixed;
     bottom: 0;
+    top: auto;
     path {
       fill: $natural-light;
     }

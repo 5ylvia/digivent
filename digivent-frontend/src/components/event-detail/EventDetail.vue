@@ -12,7 +12,7 @@
     <h1>{{ event.name }}</h1>
     <div class="flexbox">
       <img src="@/assets/pin.svg" alt="pin" />
-      <h4>{{ event.address }}</h4>
+      <h4 @click.prevent="googleMap(event.address)">{{ event.address }}</h4>
     </div>
     <div class="flexbox">
       <img src="@/assets/dates.svg" alt="dates" />
@@ -128,6 +128,13 @@ export default {
           params: { eventId: this.event._id },
         });
       }
+    },
+    googleMap: function (address) {
+      const place = address.replace(" ", "+");
+      window.open(
+        `https://www.google.com/maps/place/${place},christchurch`,
+        "_blank"
+      );
     },
   },
 };
