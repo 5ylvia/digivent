@@ -2,10 +2,10 @@
   <div class="body-inner">
     <div v-if="isEmpty == 'no'">
       <h1>Questions</h1>
-      <div class="container" v-for="(question, i) in questions" :key="i">
-        <!-- <div class="thumb"> -->
-        <img :src="question.user.image" :alt="question.user.userName" />
-        <!-- </div> -->
+      <div class="flexbox" v-for="(question, i) in questions" :key="i">
+        <div class="thumb">
+          <img :src="question.user.image" :alt="question.user.userName" />
+        </div>
         <div class="border-box" @click="isSeen($event, i)">
           <h3>{{ question.user.userName }}</h3>
           <h5>{{ question.event.name }}</h5>
@@ -79,42 +79,42 @@ export default {
 <style lang="scss">
 @import "@/style/_variables.scss";
 
-.container {
-  @include message-box;
-}
+// .flexbox {
+//   @include message-box;
+// }
 // .thumb {
 //   @include thumb-img;
 //   &--b {
 //     @include thumb-img--b;
 //   }
 // }
-.border-box {
-  width: 100%;
-  padding: 5px 0;
-  overflow: hidden;
-  border-bottom: 1px solid rgb(218, 218, 218);
-  h3,
-  h5,
-  h6 {
-    width: 90%;
-  }
-}
-.dot {
-  top: 0;
-  right: 0;
-  display: block;
-  position: relative;
-  float: right;
-  &-unread {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    padding: 5px 5px;
-    border-radius: 50%;
-    background: $secondary;
-  }
-}
-.seen {
-  background: none;
-}
+// .border-box {
+//   width: 100%;
+//   padding: 5px 0;
+//   overflow: hidden;
+//   border-bottom: 1px solid rgb(218, 218, 218);
+//   h3,
+//   h5,
+//   h6 {
+//     width: 90%;
+//   }
+// }
+// .dot {
+//   top: 0;
+//   right: 0;
+//   display: block;
+//   position: relative;
+//   float: right;
+//   &-unread {
+//     position: absolute;
+//     top: 0px;
+//     right: 0px;
+//     padding: 5px 5px;
+//     border-radius: 50%;
+//     background: $secondary;
+//   }
+// }
+// .seen {
+//   background: none;
+// }
 </style>

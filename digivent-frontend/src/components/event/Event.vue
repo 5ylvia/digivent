@@ -1,14 +1,14 @@
 <template>
-  <div class="body-main">
+  <div class="body-main aligin-bottom">
     <Searchbar v-model="search" class="search-bar" />
-    <div v-if="isSpeaker === 'yes'" class="container--right">
+    <div v-if="isSpeaker === 'yes'" class="container container--right">
       <h4>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h4>
       <h4>Check <a href="" class="color">your events</a></h4>
       <div class="thumb">
         <img :src="speaker.image" :alt="speaker.firstName" />
       </div>
     </div>
-    <div class="container--bottom">
+    <div class="container">
       <h1>Explore</h1>
       <h3>What’s upcoming events</h3>
       <EventThumbList :events="filteredEvents" />
@@ -92,10 +92,25 @@ export default {
   overflow: hidden;
 }
 .thumb {
-  @include thumb-img;
+  border: 3px solid white;
+  height: 60px;
+  width: 60px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin: 5px 0;
+  img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .search-bar {
+  z-index: -1;
   top: 0;
   left: 0;
   padding: 20px;
@@ -103,18 +118,29 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background: $primary;
+  @include desktop {
+    height: 60%;
+    margin: 0;
+    padding: 0 30%;
+  }
 }
 .color {
   color: $secondary;
 }
 .container {
-  // display: flex;
-  &--bottom {
-    padding-top: 80px;
-    // display: flex;
-    // flex-direction: column;
-    // align-self: flex-end;
+  margin-left: 16px;
+  h1,
+  h3,
+  h4 {
+    color: $natural-dark;
+    @include desktop {
+      color: white;
+    }
   }
+
   &--right {
     display: flex;
     flex-direction: column;
@@ -122,6 +148,14 @@ export default {
     margin: 16px;
     position: absolute;
     right: 0;
+    top: 100px;
   }
+}
+
+.aligin-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
 }
 </style>

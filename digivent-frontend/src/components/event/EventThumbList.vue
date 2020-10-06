@@ -29,6 +29,7 @@ export default {
 <style lang="scss">
 @import "@/style/_variables.scss";
 .contents {
+  padding-bottom: 24px;
   display: flex;
   white-space: nowrap;
   overflow-x: auto;
@@ -47,5 +48,15 @@ export default {
       width: auto;
     }
   }
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $secondary;
+  border-radius: 20px;
 }
 </style>

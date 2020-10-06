@@ -64,15 +64,15 @@ export default {
 
 <style lang="scss">
 @import "@/style/_variables.scss";
-.flexbox {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-.thumb {
-  @include thumb-img;
-  &--b {
-    @include thumb-img--b;
-  }
-}
+// .flexbox {
+//   display: flex;
+//   align-items: center;
+//   overflow: hidden;
+// }
+// .thumb {
+//   @include thumb-img;
+//   &--b {
+//     @include thumb-img--b;
+//   }
+// }
 </style>

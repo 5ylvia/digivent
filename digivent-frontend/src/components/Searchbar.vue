@@ -27,19 +27,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "@/style/_variables.scss";
 #search {
   display: flex;
-  width: 100%;
-  height: 65px;
-  border-radius: 20px;
-  border: none;
-}
-</style>
-
-<style module="web">
-#search {
-  display: flex;
+  justify-content: center;
   width: 100%;
   height: 65px;
   border-radius: 20px;

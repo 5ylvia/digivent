@@ -78,7 +78,7 @@ export default {
       this.userName = localStorage.userName;
     },
     isMobile: function () {
-      if (this.onSize < 500) {
+      if (this.onSize < 768) {
         return true;
       } else {
         return false;
@@ -103,24 +103,32 @@ export default {
 @import "@/style/_variables.scss";
 .logo {
   width: 50px;
+  position: absolute;
+  left: 24px;
+  top: 24px;
 }
 .navbar {
   width: 100vw;
   display: flex;
+  justify-content: flex-end;
   padding: 0 10px;
   z-index: 1;
-  background-color: $primary;
-  height: 90px;
+  height: 100px;
   position: absolute;
   top: 0;
+  background-color: $primary;
+
   .link {
     color: $secondary-light;
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
-    align-items: center;
+    padding: 20px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    &:hover {
+      color: $secondary;
+    }
   }
   .router-link-exact-active {
     color: $secondary;
@@ -132,10 +140,15 @@ export default {
     position: fixed;
     bottom: 0;
     top: auto;
+    .link {
+      align-items: center;
+      width: 100%;
+    }
     path {
       fill: $natural-light;
     }
     h6 {
+      font-size: 0.5rem;
       color: $natural-light;
     }
     .router-link-exact-active {
