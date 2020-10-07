@@ -7,34 +7,35 @@
       <p>Host name</p>
       <h3>{{ question.speaker.firstName }} {{ question.speaker.lastName }}</h3>
 
-      <div v-for="(question, i) in questions" :key="i">
+      <div>
         <div>
           <h4>User Name</h4>
           <h3>{{ question.user.userName }}</h3>
           <!-- <h4>{{ question.event.name }}</h4> -->
           <h4>Question</h4>
           <p>{{ question.body }}</p>
-          <hr />
+          <hr>
           <h4>Response</h4>
-          <!-- question response -->
-        </div>
-        <div>
-          <h4>Comments</h4>
-          <form v-on:submit.prevent="checkForm">
+          <p>{{question.response}}</p>
+
+          <hr>
+
+          <form v-on:submit.prevent="checkForm"> 
             <div>
-              <!-- <label for="body"></label> -->
               <input
-                v-model="question.comment"
-                id="question"
-                name="question"
+                v-model="question.response"
+                id="response"
+                name="response"
                 type="text"
-                placeholder="Type here.."
+                placeholder="Type response here.."
               />
             </div>
             <div>
               <input type="submit" value="Submit" />
             </div>
           </form>
+
+
         </div>
       </div>
     </div>
@@ -46,7 +47,7 @@ export default {
   name: "user-reply-question",
   data: function() {
     return {
-      userName: String,
+      // userName: String,
       question: {
         speaker: {
           firstName: String,
@@ -56,44 +57,69 @@ export default {
         event: {
           name: String
         },
-        body: null
+        body: null,
+        response: null,
+        user: {}
       },
-      isEmpty: "no",
-      questions: []
+      isEmpty: "no"
     };
   },
 
-  mounted: function() {
-    if (localStorage.speakerId) {
-      const speakerId = localStorage.speakerId;
-      this.getQuestions(speakerId, "speakers");
-    } else if (localStorage.userId) {
-      const userId = localStorage.userId;
-      this.getQuestions(userId, "users");
-    } else {
-      this.$router.push({ path: "/login" });
-      alert("Need to login");
-    }
+  // mounted: function() {
+  //   if (localStorage.speakerId) {
+  //     const speakerId = localStorage.speakerId;
+  //     this.getQuestions(speakerId, "speakers");
+  //   } else if (localStorage.userId) {
+  //     const userId = localStorage.userId;
+  //     // const questionId = "5f7cd17e806e9c0978c5b9c7";
+  //     this.getQuestions(userId, "users");
+  //   } else {
+  //     this.$router.push({ path: "/login" });
+  //     alert("Need to login");
+  //   }
 
-    this.userName = localStorage.userName;
-    // const eventId = this.$route.params.eventId;
-    const eventId = "5f69c2bb1ab71685d1bc7609";
-    this.$http
-      .get(`${process.env.VUE_APP_API_URL}events/${eventId}`)
-      .then(function(data) {
-        this.question.event = data.body;
-        this.question.speaker = data.body.speaker;
-      });
-  },
+  // },
 
   methods: {
-    getQuestions: function(id, person) {
+
+    getQuestion: function() {
+      const id = this.$route.params.questionId;
       this.$http
-        .get(`${process.env.VUE_APP_API_URL}${person}/${id}/questions`)
+        .get(`${process.env.VUE_APP_API_URL}questions/${id}`)
+
         .then(function(data) {
-          this.questions = data.body;
+          this.question = data.body;
         });
-    }
+    },
+
+    checkForm: function () {
+      if (this.question.response) {
+        this.responseQuestion(this.question);
+      }
+    },
+    responseQuestion: function (question) {
+      const questionId = question._id;
+      console.log(questionId);
+      this.$http
+        .put(
+          `${process.env.VUE_APP_API_URL}questions/${questionId}/response`,
+          question
+        )
+        .then(function () {
+          this.$router.push({
+            name: "question",
+            params: { eventId: this.question.event._id },
+          });
+        });
+    },
+  },
+
+
+
+
+
+  created: function() {
+    this.getQuestion();
   }
 };
 </script>
@@ -101,11 +127,10 @@ export default {
 <style lang="scss">
 @import "@/style/_variables.scss";
 
-.thumb {
-  @include thumb-img;
-  &--b {
-    @include thumb-img--b;
-  }
-}
-
+// .thumb {
+//   @include thumb-img;
+//   &--b {
+//     @include thumb-img--b;
+//   }
+// }
 </style>
