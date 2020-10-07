@@ -24,11 +24,6 @@ $natural-light: #bdbdbd;
   display: flex;
   flex-direction: column;
   padding: 22px 32px;
-  // position: absolute;
-  // height: 65px;
-  // left: 57px;
-  // right: 57px;
-  // bottom: 367px;
   background: $secondary;
   border-radius: 20px;
   text-align: center;
@@ -46,109 +41,17 @@ $natural-light: #bdbdbd;
   border-radius: 20px;
 }
 
-// @mixin thumb-img {
-//   height: 60px;
-//   width: 60px;
-//   border-radius: 20px;
-//   overflow: hidden;
-//   position: relative;
-//   margin: 5px 0;
-//   img {
-//     position: absolute;
-//     object-fit: cover;
-//     width: 100%;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//   }
-// }
-
-// @mixin thumb-img--b {
-//   height: 150px;
-//   width: 150px;
-//   border-radius: 50%;
-//   border: 4px solid white;
-// }
-
-// @mixin message-box {
-//   display: flex;
-//   padding: 10px;
-//   margin: 10px 0;
-//   &::after {
-//     content: "";
-//     clear: both;
-//     display: table;
-//   }
-//   img {
-//     float: left;
-//     min-width: 60px;
-//     width: 100%;
-//     margin-right: 20px;
-//     border-radius: 20px;
-//   }
-// }
-
-@mixin responsive-ratio($x, $y, $pseudo: false) {
-  $padding: unquote(($y / $x) * 100 + "%");
-  @if $pseudo {
-    &:before {
-      @include pseudo($pos: relative);
-      width: 100%;
-      padding-top: $padding;
-    }
-  } @else {
-    padding-top: $padding;
-  }
-}
-
-@mixin css-triangle(
-  $color,
-  $direction,
-  $size: 6px,
-  $position: absolute,
-  $round: false
-) {
-  @include pseudo($pos: $position);
-  width: 0;
-  height: 0;
-  @if $round {
-    border-radius: 20px;
-  }
-  @if $direction == down {
-    border-left: $size solid transparent;
-    border-right: $size solid transparent;
-    border-top: $size solid $color;
-    margin-top: 0 - round($size / 2.5);
-  } @else if $direction == up {
-    border-left: $size solid transparent;
-    border-right: $size solid transparent;
-    border-bottom: $size solid $color;
-    margin-bottom: 0 - round($size / 2.5);
-  } @else if $direction == right {
-    border-top: $size solid transparent;
-    border-bottom: $size solid transparent;
-    border-left: $size solid $color;
-    margin-right: -$size;
-  } @else if $direction == left {
-    border-top: $size solid transparent;
-    border-bottom: $size solid transparent;
-    border-right: $size solid $color;
-    margin-left: -$size;
-  }
-}
-
 // Responsive size
-$medium: 600px;
-$large: 1024px;
+$xs: 600px;
 
 @mixin mobile {
-  @media (max-width: #{$medium - 1px}) {
+  @media (max-width: #{$xs - 1px}) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: #{$medium}) {
+  @media (min-width: #{$xs}) {
     @content;
   }
 }

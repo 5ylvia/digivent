@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <Navbar class="md-" />
-    <router-view></router-view>
+    <Navbar />
+    <router-view />
   </v-app>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   text-decoration: none;
   font-weight: 300;
   //   // margin: 0;
-  //   box-sizing: border-box;
+  box-sizing: border-box !important;
   //   color: black;
 }
 h1,

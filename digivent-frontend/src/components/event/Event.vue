@@ -1,34 +1,29 @@
 <template>
   <v-main>
-    <Searchbar v-model="search" class="search-bar" />
-    <div v-if="isSpeaker === 'yes'" class="container container--right">
-      <h4>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h4>
-      <h4>Check <a href="/my-events" class="color">your events</a></h4>
-      <div class="thumb">
-        <img :src="speaker.image" :alt="speaker.firstName" />
-      </div>
-    </div>
-    <v-container>
-      <h1>Explore</h1>
-      <h3>What’s upcoming events</h3>
-      <EventThumbList :events="filteredEvents" />
-    </v-container>
+    <Searchbar v-model="search" pa-3 class="search-bar" />
+    <v-layout flex-column class="media" v-if="isSpeaker === 'yes'">
+      <v-flex ma-4 class="positon-tr thumb-speaker">
+        <h4 class="text-end text-white">
+          Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}
+        </h4>
+        <h4 class="text-end text-white">
+          Check <a href="/my-events" class="hightlight">your events</a>
+        </h4>
+        <v-img
+          class="rounded-xl thumb-img"
+          aspect-ratio="1"
+          :src="speaker.image"
+          :alt="speaker.firstName"
+        />
+      </v-flex>
+
+      <v-flex class="thumb-events" ml-4>
+        <h1 class="text-white">Explore</h1>
+        <h3 class="text-white">What’s upcoming events</h3>
+        <EventThumbList :events="filteredEvents" />
+      </v-flex>
+    </v-layout>
   </v-main>
-  <!-- <div class="body-main aligin-bottom">
-    <Searchbar v-model="search" class="search-bar" />
-    <div v-if="isSpeaker === 'yes'" class="container container--right">
-      <h4>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h4>
-      <h4>Check <a href="/my-events" class="color">your events</a></h4>
-      <div class="thumb">
-        <img :src="speaker.image" :alt="speaker.firstName" />
-      </div>
-    </div>
-    <div class="container">
-      <h1>Explore</h1>
-      <h3>What’s upcoming events</h3>
-      <EventThumbList :events="filteredEvents" />
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -101,76 +96,58 @@ export default {
 <style lang="scss">
 @import "@/style/_variables.scss";
 
-// .flexbox {
-//   display: flex;
-//   align-items: center;
-//   overflow: hidden;
-// }
-// .thumb {
-//   border: 3px solid white;
-//   height: 60px;
-//   width: 60px;
-//   border-radius: 20px;
-//   overflow: hidden;
-//   position: relative;
-//   margin: 5px 0;
-//   img {
-//     position: absolute;
-//     object-fit: cover;
-//     width: 100%;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//   }
-// }
+.thumb {
+  &-events {
+    margin-top: 20%;
+    @include desktop {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+  }
+  &-speaker {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &-img {
+    border: 3px solid white;
+    height: 60px;
+    width: 60px;
+    float: right;
+  }
+}
 
-// .search-bar {
-//   z-index: -1;
-//   top: 0;
-//   left: 0;
-//   padding: 20px;
-//   position: absolute;
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-content: center;
-//   background: $primary;
-//   @include desktop {
-//     height: 60%;
-//     margin: 0;
-//     padding: 0 30%;
-//   }
-// }
-// .color {
-//   color: $secondary;
-// }
-// .container {
-//   margin-left: 16px;
-//   h1,
-//   h3,
-//   h4 {
-//     color: $natural-dark;
-//     @include desktop {
-//       color: white;
-//     }
-//   }
+.search-bar {
+  z-index: -1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background: $primary;
+  @include desktop {
+    height: 50%;
+    padding: 0 30%;
+  }
+}
 
-//   &--right {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-end;
-//     margin: 16px;
-//     position: absolute;
-//     right: 0;
-//     top: 100px;
-//   }
-// }
-
-// .aligin-bottom {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-end;
-//   height: 100%;
-// }
+.hightlight {
+  color: $secondary !important;
+  &:hover {
+    font-weight: 600;
+  }
+}
+.media {
+  position: relative;
+  @include desktop {
+    position: static;
+  }
+}
+.text-white {
+  @include desktop {
+    color: white;
+    font-weight: 400;
+  }
+}
 </style>
