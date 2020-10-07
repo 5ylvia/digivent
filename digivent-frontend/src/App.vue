@@ -1,8 +1,9 @@
 <template>
-  <div id="app">
-    <Navbar />
+  <v-app>
+        <Navbar />
     <router-view></router-view>
-  </div>
+
+  </v-app>
 </template>
 
 <script>
@@ -15,13 +16,11 @@ export default {
   },
 };
 </script>
-
 <style lang="scss">
 @import "@/style/_variables.scss";
 
 * {
   // border: 1px solid red;
-  font-family: "Roboto", sans-serif;
   text-decoration: none;
   font-weight: 300;
   margin: 0;

@@ -14,28 +14,26 @@
           <!-- <h4>{{ question.event.name }}</h4> -->
           <h4>Question</h4>
           <p>{{ question.body }}</p>
-          <hr>
+          <hr />
           <h4>Response</h4>
           <p>{{question.response}}</p>
-
-          <hr>
-
-          <form v-on:submit.prevent="checkForm"> 
-            <div>
-              <input
-                v-model="question.response"
-                id="response"
-                name="response"
-                type="text"
-                placeholder="Type response here.."
-              />
-            </div>
-            <div>
-              <input type="submit" value="Submit" />
-            </div>
-          </form>
-
-
+          <hr />
+          <div v-if="isSpeaker === 'yes'" class="response response--yes">
+            <form v-on:submit.prevent="checkForm">
+              <div>
+                <input
+                  v-model="question.response"
+                  id="response"
+                  name="response"
+                  type="text"
+                  placeholder="Type response here.."
+                />
+              </div>
+              <div>
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -61,7 +59,8 @@ export default {
         response: null,
         user: {}
       },
-      isEmpty: "no"
+      isEmpty: "no",
+      isSpeaker: "no"
     };
   },
 
@@ -80,8 +79,13 @@ export default {
 
   // },
 
-  methods: {
+  mounted: function() {
+    if (localStorage.speakerId) {
+      this.isSpeaker = "yes";
+    }
+  },
 
+  methods: {
     getQuestion: function() {
       const id = this.$route.params.questionId;
       this.$http
@@ -92,12 +96,13 @@ export default {
         });
     },
 
-    checkForm: function () {
+    checkForm: function() {
       if (this.question.response) {
         this.responseQuestion(this.question);
       }
     },
-    responseQuestion: function (question) {
+
+    responseQuestion: function(question) {
       const questionId = question._id;
       console.log(questionId);
       this.$http
@@ -105,18 +110,14 @@ export default {
           `${process.env.VUE_APP_API_URL}questions/${questionId}/response`,
           question
         )
-        .then(function () {
+        .then(function() {
           this.$router.push({
             name: "question",
-            params: { eventId: this.question.event._id },
+            params: { eventId: this.question.event._id }
           });
         });
-    },
+    }
   },
-
-
-
-
 
   created: function() {
     this.getQuestion();
@@ -126,6 +127,14 @@ export default {
 
 <style lang="scss">
 @import "@/style/_variables.scss";
+
+.response {
+  visibility: hidden;
+
+  &--yes {
+    visibility: visible;
+  }
+}
 
 // .thumb {
 //   @include thumb-img;
