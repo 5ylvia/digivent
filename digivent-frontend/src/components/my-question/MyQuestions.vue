@@ -9,7 +9,9 @@
         <div class="border-box" @click="isSeen($event, i)">
           <h3>{{ question.user.userName }}</h3>
           <h5>{{ question.event.name }}</h5>
-          <h6>{{ question.body }}</h6>
+          <h6 class="text-break" style="max-width: 100%;">
+            {{ question.body }}
+          </h6>
         </div>
         <div class="dot">
           <div
@@ -35,14 +37,14 @@
 <script>
 export default {
   name: "my-questions",
-  data: function () {
+  data: function() {
     return {
       seen: {},
       isEmpty: "no",
       questions: [],
     };
   },
-  mounted: function () {
+  mounted: function() {
     if (localStorage.speakerId) {
       const speakerId = localStorage.speakerId;
       this.getQuestions(speakerId, "speakers");
@@ -53,17 +55,17 @@ export default {
     }
   },
   methods: {
-    isSeen: function (event, i) {
+    isSeen: function(event, i) {
       if (this.seen[i]) {
         this.seen[i] = false;
       } else if (!this.seen[i]) {
         this.$set(this.seen, i, true);
       }
     },
-    getQuestions: function (id, person) {
+    getQuestions: function(id, person) {
       this.$http
         .get(`${process.env.VUE_APP_API_URL}${person}/${id}/questions`)
-        .then(function (data) {
+        .then(function(data) {
           this.questions = data.body;
         });
       if (this.questions.length > 0) {

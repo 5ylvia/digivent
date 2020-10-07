@@ -2,12 +2,15 @@
   <v-main>
     <Searchbar v-model="search" pa-3 class="search-bar" />
     <v-layout flex-column class="media" v-if="isSpeaker === 'yes'">
-      <v-flex ma-4 class="positon-tr thumb-speaker">
+      <v-flex ma-4 class="thumb-speaker">
         <h4 class="text-end text-white">
           Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}
         </h4>
         <h4 class="text-end text-white">
-          Check <a href="/my-events" class="hightlight">your events</a>
+          Check
+          <a href="/my-events" class="hightlight secondary--text"
+            >your events</a
+          >
         </h4>
         <v-img
           class="rounded-xl thumb-img"
@@ -133,8 +136,10 @@ export default {
 }
 
 .hightlight {
-  color: $secondary !important;
+  font-weight: 400;
+
   &:hover {
+    color: $secondary !important;
     font-weight: 600;
   }
 }
