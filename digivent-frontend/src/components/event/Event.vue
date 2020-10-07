@@ -1,5 +1,6 @@
 <template>
   <v-main>
+<<<<<<< HEAD
     <Searchbar v-model="search" class="search-bar" />
     <div v-if="isSpeaker === 'yes'" class="container container--right">
       <h4>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h4>
@@ -13,6 +14,34 @@
       <h3>What’s upcoming events</h3>
       <EventThumbList :events="filteredEvents" />
     </div>
+=======
+    <Searchbar v-model="search" pa-3 class="search-bar" />
+    <v-layout flex-column class="media" v-if="isSpeaker === 'yes'">
+      <v-flex ma-4 class="thumb-speaker">
+        <h4 class="text-end text-white">
+          Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}
+        </h4>
+        <h4 class="text-end text-white">
+          Check
+          <a href="/my-events" class="hightlight secondary--text"
+            >your events</a
+          >
+        </h4>
+        <v-img
+          class="rounded-xl thumb-img"
+          aspect-ratio="1"
+          :src="speaker.image"
+          :alt="speaker.firstName"
+        />
+      </v-flex>
+
+      <v-flex class="thumb-events" ml-4>
+        <h1 class="text-white">Explore</h1>
+        <h3 class="text-white">What’s upcoming events</h3>
+        <EventThumbList :events="filteredEvents" />
+      </v-flex>
+    </v-layout>
+>>>>>>> 51f51886db498c19d1d3d0994acde3a71a6afcf1
   </v-main>
 </template>
 
@@ -26,7 +55,7 @@ export default {
     EventThumbList,
     Searchbar,
   },
-  data: function () {
+  data: function() {
     return {
       isSpeaker: "no",
       search: "",
@@ -35,28 +64,28 @@ export default {
     };
   },
   methods: {
-    getEvents: function () {
+    getEvents: function() {
       this.$http
         .get(`${process.env.VUE_APP_API_URL}events`)
-        .then(function (data) {
+        .then(function(data) {
           this.events = data.body;
         });
     },
   },
-  created: function () {
+  created: function() {
     this.getEvents();
     if (localStorage.speakerId) {
       this.isSpeaker = "yes";
       const id = localStorage.speakerId;
       this.$http
         .get(`${process.env.VUE_APP_API_URL}speakers/${id}`)
-        .then(function (data) {
+        .then(function(data) {
           this.speaker = data.body;
         });
     }
   },
   computed: {
-    filteredEvents: function () {
+    filteredEvents: function() {
       return this.events.filter((event) => {
         let byEvent =
           event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
@@ -86,76 +115,60 @@ export default {
 <style lang="scss">
 @import "@/style/_variables.scss";
 
-.flexbox {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
 .thumb {
-  border: 3px solid white;
-  height: 60px;
-  width: 60px;
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  margin: 5px 0;
-  img {
+  &-events {
+    margin-top: 20%;
+    @include desktop {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+  }
+  &-speaker {
     position: absolute;
-    object-fit: cover;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    right: 0;
+  }
+  &-img {
+    border: 3px solid white;
+    height: 60px;
+    width: 60px;
+    float: right;
   }
 }
 
 .search-bar {
   z-index: -1;
-  top: 0;
-  left: 0;
-  padding: 20px;
-  position: absolute;
-  width: 100%;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   background: $primary;
   @include desktop {
-    height: 60%;
-    margin: 0;
+    height: 50%;
     padding: 0 30%;
   }
 }
-.color {
-  color: $secondary;
-}
-.container {
-  margin-left: 16px;
-  h1,
-  h3,
-  h4 {
-    color: $natural-dark;
-    @include desktop {
-      color: white;
-    }
-  }
 
-  &--right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin: 16px;
-    position: absolute;
-    right: 0;
-    top: 100px;
+.hightlight {
+  font-weight: 400;
+
+  &:hover {
+    color: $secondary !important;
+    font-weight: 600;
   }
 }
-
-.aligin-bottom {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
+.media {
+  position: relative;
+  @include desktop {
+    position: static;
+  }
+}
+.text-white {
+  @include desktop {
+    color: white;
+    font-weight: 400;
+  }
 }
 </style>
