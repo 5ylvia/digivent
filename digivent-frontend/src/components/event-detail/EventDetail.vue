@@ -50,7 +50,7 @@
             <router-link
               :to="{
                 name: 'speaker-detail',
-                params: { speakerId: event.speaker },
+                params: { speakerId: event.speaker._id },
               }"
             >
               <h6 class="link">About host</h6>

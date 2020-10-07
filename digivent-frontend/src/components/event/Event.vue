@@ -1,23 +1,8 @@
 <template>
   <v-main>
-<<<<<<< HEAD
-    <Searchbar v-model="search" class="search-bar" />
-    <div v-if="isSpeaker === 'yes'" class="container container--right">
-      <h4>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h4>
-      <h4>Check <a href="/my-events" class="color">your events</a></h4>
-      <div class="thumb">
-        <img :src="speaker.image" :alt="speaker.firstName" />
-      </div>
-    </div>
-    <div class="container">
-      <h1>Explore</h1>
-      <h3>What’s upcoming events</h3>
-      <EventThumbList :events="filteredEvents" />
-    </div>
-=======
     <Searchbar v-model="search" pa-3 class="search-bar" />
-    <v-layout flex-column class="media" v-if="isSpeaker === 'yes'">
-      <v-flex ma-4 class="thumb-speaker">
+    <v-layout flex-column class="media">
+      <v-flex ma-4 class="thumb-speaker"  v-if="isSpeaker === 'yes'">
         <h4 class="text-end text-white">
           Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}
         </h4>
@@ -38,10 +23,12 @@
       <v-flex class="thumb-events" ml-4>
         <h1 class="text-white">Explore</h1>
         <h3 class="text-white">What’s upcoming events</h3>
-        <EventThumbList :events="filteredEvents" />
+        <keep-alive>
+          <EventThumbList :events="filteredEvents" />
+        </keep-alive>
+
       </v-flex>
     </v-layout>
->>>>>>> 51f51886db498c19d1d3d0994acde3a71a6afcf1
   </v-main>
 </template>
 
