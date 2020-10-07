@@ -1,5 +1,5 @@
 <template>
-  <div class="body-main aligin-bottom">
+  <v-main>
     <Searchbar v-model="search" class="search-bar" />
     <div v-if="isSpeaker === 'yes'" class="container container--right">
       <h4>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h4>
@@ -13,7 +13,7 @@
       <h3>What’s upcoming events</h3>
       <EventThumbList :events="filteredEvents" />
     </div>
-  </div>
+  </v-main>
 </template>
 
 <script>
