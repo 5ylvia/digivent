@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Speaker = require("../models/Speaker.js");
 const Event = require("../models/Event.js");
 const Question = require("../models/Question.js");
+const { populate } = require("../models/Speaker.js");
 
 router.param("id", (req, res, next, id) => {
   Speaker.findById(id)
@@ -26,7 +27,14 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  res.status(200).send(req.speaker);
+  Speaker.findById(req.speaker.id)
+    .populate("events")
+    .sort({ createdAt: "desc" })
+    .then((speakers) => {
+      return res.status(200).send(speakers);
+    })
+    .catch(next);
+  // res.status(200).send(req.speaker);
 });
 
 router.post("/", (req, res, next) => {
@@ -55,7 +63,7 @@ router.delete("/:id", (req, res, next) => {
 
 router.get("/:id/events", (req, res, next) => {
   Event.find({ speaker: req.speaker.id })
-  .populate("speaker")
+    .populate("speaker")
     .sort({ createdAt: "desc" })
     .then((events) => {
       return res.status(200).send(events);
@@ -84,6 +92,29 @@ router.post("/:id/events", (req, res, next) => {
     })
     .catch(next);
 });
+
+// //Post question response by speakerId
+// router.put("/:id/response", (req, res, next) => {
+//   Question.up
+//   // const event = new Event(req.body);
+//   // event.speaker = req.speaker.id;
+//   // event
+//   //   .save()
+//   //   .then((event) => {
+//   //     if (!req.speaker.events) {
+//   //       req.speaker.events = [];
+//   //     }
+//   //     req.speaker.events.push(event);
+//   //     req.speaker
+//   //       .save()
+//   //       .then((speaker) => {
+//   //         console.log("Post event with speaker's name");
+//   //         res.status(201).send({ event: event, speaker: speaker });
+//   //       })
+//   //       .catch(next);
+//   //   })
+//   //   .catch(next);
+// });
 
 // Get questions by speaker Id
 router.get("/:id/questions", (req, res, next) => {

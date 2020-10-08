@@ -61,7 +61,7 @@ export default {
   data: function() {
     return {
       loggedIn: "no",
-      userName: "",
+      userName: ""
     };
   },
   methods: {
@@ -141,16 +141,5 @@ export default {
   }
 }
 
-//   &--mobile {
-//
-//
-//     top: auto;
-//     .link {
-//
-//     }
-
-//     h6 {
-//     }
-//   }
-// }
 </style>
+

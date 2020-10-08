@@ -123,6 +123,7 @@ export default {
     }
   },
   methods: {
+
     goBack() {
       return this.$router.push({ path: "/" });
     },
