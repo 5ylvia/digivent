@@ -2,7 +2,7 @@
   <v-main>
     <Searchbar v-model="search" pa-3 class="search-bar" />
     <v-layout flex-column class="media">
-      <v-flex ma-4 class="thumb-speaker" v-if="isSpeaker === 'yes'">
+      <v-flex ma-4 class="thumb-top" v-if="isSpeaker === 'yes'">
         <h4 class="text-end text-white">
           Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}
         </h4>
@@ -108,7 +108,7 @@ export default {
       @include position-bottom;
     }
   }
-  &-speaker {
+  &-top {
     @include position-top;
   }
   &-img--right {

@@ -28,6 +28,7 @@ $natural-light: #bdbdbd;
   border-radius: 20px;
   text-align: center;
   font-weight: 600;
+  align-items: center;
 }
 
 // @mixin secondarybutton {
@@ -66,8 +67,6 @@ $xs: 600px;
   border: 6px solid white;
   height: 150px;
   width: 150px;
-  box-sizing: border-box;
-  border-radius: 50%;
 }
 
 @mixin position-bottom {

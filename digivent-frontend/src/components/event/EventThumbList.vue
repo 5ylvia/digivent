@@ -13,22 +13,6 @@
       </router-link>
     </div>
   </v-flex>
-  <!-- <v-sheet class="mx-auto contents">
-    <v-slide-group multiple show-arrows background="none">
-      <v-slide-item class="contents__box" v-for="(event, i) in events" :key="i">
-        <router-link
-          v-bind:to="{
-            name: 'detail',
-            params: { eventId: event._id },
-          }"
-        >
-          <v-img class="contents__img" :src="event.image" :alt="event.name" />
-          <h2>{{ event.name }}</h2>
-          <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
-        </router-link>
-      </v-slide-item>
-    </v-slide-group>
-  </v-sheet> -->
 </template>
 
 <script>
