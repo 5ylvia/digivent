@@ -6,7 +6,7 @@
         <h4 class="text-end text-white">
           Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}
         </h4>
-        <h4 class="text-end text-white">
+        <h4 class="text-end text-white mb-2">
           Check
           <a href="/my-events" class="hightlight secondary--text"
             >your events</a

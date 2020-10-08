@@ -6,7 +6,7 @@
         <img
           src="@/assets/Frame 12.svg"
           alt="Frame"
-          @click.prevent="closePage"
+          @click.prevent="closePage(event._id)"
         />
         <h2>Host Details</h2>
       </v-flex>
@@ -48,7 +48,7 @@
                   <template v-slot:activator="{ on }">
                     <v-text-field
                       v-model="event.date"
-                      label="Picker without buttons"
+                      label="Event Date"
                       readonly
                       v-on="on"
                     ></v-text-field>
@@ -90,9 +90,11 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" class="py-0">
-                <button class="primary--text btn btn--light" type="submit">
-                  {{ mode }}
-                </button>
+                <input
+                  class="primary--text btn btn--light"
+                  type="submit"
+                  :value="mode"
+                />
               </v-col>
             </v-row>
           </v-form>
@@ -122,6 +124,9 @@ export default {
     };
   },
   methods: {
+    closePage: function(eventId) {
+      this.$router.push({ name: "detail", params: { eventId: eventId } });
+    },
     checkForm: function() {
       if (
         this.event.name &&
@@ -136,6 +141,8 @@ export default {
         } else {
           this.createEvent(this.event);
         }
+      } else {
+        alert("All fields are required");
       }
     },
 

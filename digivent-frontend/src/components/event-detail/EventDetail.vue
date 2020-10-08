@@ -124,7 +124,7 @@ export default {
   },
   methods: {
     goBack() {
-      return this.$router.go(-1);
+      return this.$router.push({ path: "/" });
     },
     deleteEvent: function(eventId, speakerId) {
       if (localStorage.speakerId !== speakerId) {
@@ -135,7 +135,7 @@ export default {
           this.$http
             .delete(`${process.env.VUE_APP_API_URL}events/${eventId}`)
             .then(function() {
-              this.$router.push({ path: "/events" });
+              this.$router.push({ path: "/my-events" });
             });
         }
       }
