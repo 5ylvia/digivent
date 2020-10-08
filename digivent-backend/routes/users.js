@@ -55,7 +55,11 @@ router.delete("/:id", (req, res, next) => {
 // Get events details by userId
 router.get("/:id/events", (req, res, next) => {
   User.findById(req.user.id)
+<<<<<<< HEAD
     .populate("events", "name date time speaker")
+=======
+    .populate("events")
+>>>>>>> upstream/master
     .then((user) => {
       return res.send(user);
     })
@@ -66,6 +70,7 @@ router.get("/:id/events", (req, res, next) => {
 router.get("/:id/questions", (req, res, next) => {
   Question.find({ user: req.params.id })
     .populate("user", "image userName")
+    .populate("event", "name")
     .sort({ createdAt: "desc" })
     .then((questions) => {
       console.log("Get questions by eventId");

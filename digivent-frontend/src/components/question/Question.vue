@@ -9,14 +9,15 @@
       <h3>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h3>
       <h3>{{ event.name }}</h3>
       <div v-for="(question, i) in questions" :key="i">
-        <div class="thumb">
-          <img :src="question.user.image" :alt="question.user.userName" />
-        </div>
-        <div>
-          <h3>{{ question.user.userName }}</h3>
-          <h4>{{ question.event.name }}</h4>
-          <p>{{ question.body }}</p>
-        </div>
+        <router-link :to="{ name: 'user-reply-question', params: { questionId : question._id}}">
+          <div class="thumb">
+            <img :src="question.user.image" :alt="question.user.userName" />
+          </div>
+          <div>
+            <h3>{{ question.user.userName }}</h3>
+            <p class="text-break" style="max-width: 100%;">{{ question.body }}</p>
+          </div>
+        </router-link>
       </div>
       <router-link
         :to="{ name: 'post-question', params: { eventId: event._id } }"
@@ -65,15 +66,15 @@ export default {
 
 <style lang="scss">
 @import "@/style/_variables.scss";
-.flexbox {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-.thumb {
-  @include thumb-img;
-  &--b {
-    @include thumb-img--b;
-  }
-}
+// .flexbox {
+//   display: flex;
+//   align-items: center;
+//   overflow: hidden;
+// }
+// .thumb {
+//   @include thumb-img;
+//   &--b {
+//     @include thumb-img--b;
+//   }
+// }
 </style>

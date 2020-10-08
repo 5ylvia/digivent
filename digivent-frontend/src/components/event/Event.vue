@@ -1,21 +1,34 @@
 <template>
-  <div>
-    <Searchbar v-model="search" type="text" id="search" />
+  <v-main>
+    <Searchbar v-model="search" pa-3 class="search-bar" />
+    <v-layout flex-column class="media">
+      <v-flex ma-4 class="thumb-top" v-if="isSpeaker === 'yes'">
+        <h4 class="text-end text-white">
+          Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}
+        </h4>
+        <h4 class="text-end text-white mb-2">
+          Check
+          <a href="/my-events" class="hightlight secondary--text"
+            >your events</a
+          >
+        </h4>
+        <v-img
+          class="rounded-xl thumb-img--right"
+          aspect-ratio="1"
+          :src="speaker.image"
+          :alt="speaker.firstName"
+        />
+      </v-flex>
 
-    <div v-if="isSpeaker === 'yes'">
-      <h3>Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}</h3>
-      <h4>Check <a href="">your events</a></h4>
-      <div class="thumb">
-        <img :src="speaker.image" :alt="speaker.firstName" />
-      </div>
-    </div>
-
-    <h1>Explore</h1>
-    <h2>What’s upcoming events</h2>
-
-    <router-link :to="{ name: 'edit' }">New event</router-link>
-    <EventThumbList :events="filteredEvents" />
-  </div>
+      <v-flex class="thumb-events" ml-4>
+        <h1 class="text-white">Explore</h1>
+        <h3 class="text-white">What’s upcoming events</h3>
+        <keep-alive>
+          <EventThumbList :events="filteredEvents" />
+        </keep-alive>
+      </v-flex>
+    </v-layout>
+  </v-main>
 </template>
 
 <script>
@@ -46,6 +59,7 @@ export default {
     },
   },
   created: function() {
+    this.getEvents();
     if (localStorage.speakerId) {
       this.isSpeaker = "yes";
       const id = localStorage.speakerId;
@@ -55,7 +69,6 @@ export default {
           this.speaker = data.body;
         });
     }
-    this.getEvents();
   },
   computed: {
     filteredEvents: function() {
@@ -88,12 +101,51 @@ export default {
 <style lang="scss">
 @import "@/style/_variables.scss";
 
-.flexbox {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
 .thumb {
-  @include thumb-img;
+  &-events {
+    margin-top: 20%;
+    @include desktop {
+      @include position-bottom;
+    }
+  }
+  &-top {
+    @include position-top;
+  }
+  &-img--right {
+    float: right;
+    @include thumb-img;
+  }
+}
+
+.search-bar {
+  z-index: -1;
+  padding: 16px;
+  background: $primary;
+  @include display-center;
+  @include desktop {
+    height: 50%;
+    padding: 0 30%;
+  }
+}
+
+.hightlight {
+  font-weight: 400;
+
+  &:hover {
+    color: $secondary !important;
+    font-weight: 600;
+  }
+}
+.media {
+  position: relative;
+  @include desktop {
+    position: static;
+  }
+}
+.text-white {
+  @include desktop {
+    color: white;
+    font-weight: 400;
+  }
 }
 </style>
