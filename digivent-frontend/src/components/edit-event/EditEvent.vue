@@ -195,12 +195,6 @@ export default {
   width: 100%;
   height: 30%;
   background: $primary;
-<<<<<<< HEAD
-      @include desktop {
-    height: 60%;
-  }
-=======
->>>>>>> a455c4ec1bd3b48eaf6435e4902f184eed3fb60f
 }
 .thumb {
   &-speaker {
