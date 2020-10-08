@@ -19,27 +19,26 @@ $natural-light: #bdbdbd;
 }
 
 /* Button/Primary */
-
 @mixin buttonprimary {
   display: flex;
   flex-direction: column;
-  padding: 22px 32px;
+  justify-content: center;
+  height: 65px;
   background: $secondary;
   border-radius: 20px;
   text-align: center;
-  font-weight: 400;
-  color: white;
+  font-weight: 600;
 }
 
-@mixin secondarybutton {
-  position: absolute;
-  // width: 144.39px;
-  // height: 65px;
-  // left: 58px;
-  // top: 700px;
-  background: #edf5e1;
-  border-radius: 20px;
-}
+// @mixin secondarybutton {
+//   position: absolute;
+//   // width: 144.39px;
+//   // height: 65px;
+//   // left: 58px;
+//   // top: 700px;
+//   background: #edf5e1;
+//   border-radius: 20px;
+// }
 
 // Responsive size
 $xs: 600px;
@@ -54,4 +53,38 @@ $xs: 600px;
   @media (min-width: #{$xs}) {
     @content;
   }
+}
+
+@mixin thumb-img {
+  border: 3px solid white;
+  height: 70px;
+  width: 70px;
+  box-sizing: border-box;
+}
+
+@mixin thumb-img--large {
+  border: 6px solid white;
+  height: 150px;
+  width: 150px;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+@mixin position-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+@mixin position-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@mixin display-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }

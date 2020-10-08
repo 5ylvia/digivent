@@ -2,7 +2,7 @@
   <v-main>
     <Searchbar v-model="search" pa-3 class="search-bar" />
     <v-layout flex-column class="media">
-      <v-flex ma-4 class="thumb-speaker"  v-if="isSpeaker === 'yes'">
+      <v-flex ma-4 class="thumb-speaker" v-if="isSpeaker === 'yes'">
         <h4 class="text-end text-white">
           Hi Host, {{ speaker.firstName }} {{ speaker.lastName }}
         </h4>
@@ -13,7 +13,7 @@
           >
         </h4>
         <v-img
-          class="rounded-xl thumb-img"
+          class="rounded-xl thumb-img--right"
           aspect-ratio="1"
           :src="speaker.image"
           :alt="speaker.firstName"
@@ -26,7 +26,6 @@
         <keep-alive>
           <EventThumbList :events="filteredEvents" />
         </keep-alive>
-
       </v-flex>
     </v-layout>
   </v-main>
@@ -106,32 +105,23 @@ export default {
   &-events {
     margin-top: 20%;
     @include desktop {
-      position: absolute;
-      left: 0;
-      bottom: 0;
+      @include position-bottom;
     }
   }
   &-speaker {
-    position: absolute;
-    top: 0;
-    right: 0;
+    @include position-top;
   }
-  &-img {
-    border: 3px solid white;
-    height: 60px;
-    width: 60px;
+  &-img--right {
     float: right;
+    @include thumb-img;
   }
 }
 
 .search-bar {
   z-index: -1;
   padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
   background: $primary;
+  @include display-center;
   @include desktop {
     height: 50%;
     padding: 0 30%;
