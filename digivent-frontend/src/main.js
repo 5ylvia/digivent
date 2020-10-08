@@ -89,11 +89,6 @@ const routes = [
     path: "/speaker-detail",
     component: () => import("./components/speaker-detail/SpeakerDetail.vue"),
     props: true,
-<<<<<<< HEAD
-  }
-  
-  ,
-=======
   },
   {
     name: "user-reply-question",
@@ -101,17 +96,12 @@ const routes = [
     component: () => import("./components/question-reply/UserQuestionReply"),
     props: true,
   },
->>>>>>> upstream/master
   {
     name: "my-events",
     path: "/my-events",
     component: () => import("./components/my-event/MyEvent.vue"),
     props: true,
-<<<<<<< HEAD
-  }
-=======
   },
->>>>>>> upstream/master
 ];
 
 const router = new VueRouter({

@@ -108,22 +108,6 @@ export default {
       color: $secondary;
     }
   }
-<<<<<<< HEAD
-}
-.router-link-active {
-  color: red;
-}
-.text {
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-}
-.router-link-exact-active {
-    color: rgb(85, 85, 85)!important;
-}
-=======
   .router-link-exact-active {
     color: $secondary;
   }
@@ -135,7 +119,6 @@ export default {
     background-color: white;
     border-top: 1px solid rgb(218, 218, 218);
     width: 100%;
->>>>>>> upstream/master
 
     .link {
       display: flex;

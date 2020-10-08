@@ -81,9 +81,6 @@
       <a v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut">Log Out</a>
     </v-layout>
     </div>
-    <a class="btn" v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut"
-      >Log Out</a
-    >
   </div>
 </template>
 
