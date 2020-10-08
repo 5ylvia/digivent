@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <v-main>
     <div aspect-ratio="1.4" class="header"></div>
 
@@ -28,6 +29,37 @@
       </v-card>
     </v-layout>
     <v-layout column v-else>
+=======
+  <div class="body-inner">
+    <div v-if="isEmpty == 'no'">
+      <h1>Questions</h1>
+      <div class="flexbox" v-for="(question, i) in questions" :key="i">
+        <router-link :to="{ name: 'user-reply-question', params: { questionId : question._id, eventId: question.event._id}}">
+          <div class="thumb">
+            <img :src="question.user.image" :alt="question.user.userName" />
+          </div>
+          <div class="border-box" @click="isSeen($event, i)">
+            <h3>{{ question.user.userName }}</h3>
+            <h5>{{ question.event.name }}</h5>
+            <h6>{{ question.body }}</h6>
+          </div>
+          <div class="dot">
+            <div
+              class="dot-unread"
+              v-if="seen[i]"
+              :class="{ seen: seen[i] }"
+            ></div>
+            <div class="dot-unread" v-else></div>
+          </div>
+        </router-link>
+      </div>
+      <!-- <router-link
+        :to="{ name: 'post-question', params: { eventId: event._id } }"
+        >Ask question
+      </router-link> -->
+    </div>
+    <div v-else>
+>>>>>>> a455c4ec1bd3b48eaf6435e4902f184eed3fb60f
       <h1>My Questions</h1>
       <h3>You don't have any questions.</h3>
     </v-layout>

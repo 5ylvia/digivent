@@ -215,7 +215,6 @@ export default {
     font-weight: 600;
   }
 }
-
 .title {
   position: absolute;
   left: 30px;

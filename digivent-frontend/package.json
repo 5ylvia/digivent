@@ -19,6 +19,10 @@
     "vue": "^2.6.11",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.4.3",
+<<<<<<< HEAD
+=======
+
+>>>>>>> a455c4ec1bd3b48eaf6435e4902f184eed3fb60f
     "vuetify": "^2.3.13"
 
   },
