@@ -52,7 +52,7 @@ router.delete("/:id", (req, res, next) => {
   });
 });
 
-// Get events details by userId
+// Get booked events details by userId
 router.get("/:id/events", (req, res, next) => {
   User.findById(req.user.id)
     .populate("events")
@@ -85,21 +85,6 @@ router.put("/:id/event", (req, res, next) => {
     .catch(next);
 });
 
-router.post("/login", (req, res, next) => {
-  if (!req.body.userName) {
-    return res.status(422).send("username can't be blank");
-  }
-
-  User.findOne({ userName: req.body.userName })
-    .then(function (user) {
-      if (!user) {
-        return res.status(422).send("User not found");
-      }
-      return res.send(user);
-    })
-    .catch(next);
-});
-
 // Post new question by userId
 router.post("/:id/question", (req, res, next) => {
   const question = new Question(req.body);
@@ -117,6 +102,21 @@ router.post("/:id/question", (req, res, next) => {
           res.status(201).send({ question: question, user: user });
         })
         .catch(next);
+    })
+    .catch(next);
+});
+
+router.post("/login", (req, res, next) => {
+  if (!req.body.userName) {
+    return res.status(422).send("username can't be blank");
+  }
+
+  User.findOne({ userName: req.body.userName })
+    .then(function (user) {
+      if (!user) {
+        return res.status(422).send("User not found");
+      }
+      return res.send(user);
     })
     .catch(next);
 });

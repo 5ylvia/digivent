@@ -27,26 +27,24 @@
 <script>
 export default {
   name: "book",
-  data: function () {
+  data: function() {
     return {
       event: {
-        speaker: {
-          firstName: String,
-          lastName: String,
-          image: String,
-        },
+        speaker: {},
       },
     };
   },
-  // mounted: function () {
-  //   this.event = this.$attrs.event;
-  // },
-    mounted: function() {
-    const id = this.$route.params.eventId;
+
+  mounted: function() {
+    const eventId = this.$route.params.eventId;
+    const userId = this.$route.params.userId;
     this.$http
-      .get(`${process.env.VUE_APP_API_URL}events/${id}`)
+      .get(`${process.env.VUE_APP_API_URL}users/${userId}/events`)
       .then(function(data) {
-        this.event = data.body;
+        const userEvent = data.body.events;
+        this.event = userEvent.filter(function(events) {
+          return events._id === eventId;
+        })[0];
       });
   },
 };

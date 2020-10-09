@@ -84,11 +84,7 @@
           </div>
           <!-- user's button -->
           <div class="btn-group" v-else @click.prevent="bookEvent()">
-            <router-link
-              class="btn white--text"
-              :to="{ name: 'book', params: { eventId: event._id } }"
-              >Book
-            </router-link>
+            <a class="btn white--text">Book</a>
           </div>
         </v-layout>
       </v-flex>
@@ -140,11 +136,15 @@ export default {
     },
     bookEvent: function() {
       const event = this.event;
-      const id = localStorage.userId;
+      const userId = localStorage.userId;
       this.$http
-        .put(`${process.env.VUE_APP_API_URL}users/${id}/event`, event)
+        .put(`${process.env.VUE_APP_API_URL}users/${userId}/event`, event)
         .then(function() {
           alert("Booking confirmed!");
+          this.$router.push({
+            name: "book",
+            params: { eventId: event._id, userId: userId },
+          });
         });
     },
 
