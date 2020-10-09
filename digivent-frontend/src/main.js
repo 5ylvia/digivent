@@ -32,7 +32,7 @@ const routes = [
   },
   {
     name: "book",
-    path: "/:eventId/booking",
+    path: "/:eventId?/booking",
     component: () => import("./components/book/BookEvent"),
     props: true,
   },
@@ -71,7 +71,7 @@ const routes = [
   },
   {
     name: "question",
-    path: "/question",
+    path: "/:eventId?/question",
     component: () => import("./components/question/Question"),
     props: true,
   },
@@ -86,13 +86,13 @@ const routes = [
   },
   {
     name: "speaker-detail",
-    path: "/speaker-detail",
+    path: "/:speakerId?/speaker-detail",
     component: () => import("./components/speaker-detail/SpeakerDetail.vue"),
     props: true,
   },
   {
     name: "user-reply-question",
-    path: "/user-reply-question",
+    path: "/:questionId/user-reply-question",
     component: () => import("./components/question-reply/UserQuestionReply"),
     props: true,
   },

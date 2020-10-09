@@ -55,16 +55,15 @@
               v-if="isSpeaker === 'yes'"
               class="btn white--text"
               @click.prevent="checkSpeaker(event.speaker._id)"
+              >Edit event</a
             >
-              Edit event
-            </a>
             <!-- user's button -->
             <router-link
               v-else
               class="btn btn--light"
               :to="{ name: 'question', params: { eventId: event._id } }"
-              >View Questions
-            </router-link>
+              >View Questions</router-link
+            >
           </v-flex>
           <v-row class="py-4">
             <h3 class="font-weight-medium pb-2">Event Description</h3>
@@ -80,9 +79,8 @@
             <a
               class="btn btn--light"
               @click.prevent="deleteEvent(event._id, event.speaker._id)"
+              >Delete Event</a
             >
-              Delete Event
-            </a>
           </div>
           <!-- user's button -->
           <div class="btn-group" v-else @click.prevent="bookEvent()">
