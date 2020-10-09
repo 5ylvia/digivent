@@ -38,8 +38,16 @@ export default {
       },
     };
   },
-  mounted: function () {
-    this.event = this.$attrs.event;
+  // mounted: function () {
+  //   this.event = this.$attrs.event;
+  // },
+    mounted: function() {
+    const id = this.$route.params.eventId;
+    this.$http
+      .get(`${process.env.VUE_APP_API_URL}events/${id}`)
+      .then(function(data) {
+        this.event = data.body;
+      });
   },
 };
 </script>

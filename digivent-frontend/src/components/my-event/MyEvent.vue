@@ -23,7 +23,7 @@
         <router-link class="button"
           v-bind:to="{
             name: 'book',
-            params: { event: event },
+            params: { eventId: event._id },
           }"
         >
           <h6>{{ event.time }}  {{ event.date }}</h6>

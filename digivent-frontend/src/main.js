@@ -32,7 +32,7 @@ const routes = [
   },
   {
     name: "book",
-    path: "/booking",
+    path: "/:eventId/booking",
     component: () => import("./components/book/BookEvent"),
     props: true,
   },
@@ -65,7 +65,7 @@ const routes = [
   },
   {
     name: "post-question",
-    path: "/post-question",
+    path: "/:eventId?/post-question",
     component: () => import("./components/post-question/PostQuestion"),
     props: true,
   },

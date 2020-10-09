@@ -88,7 +88,7 @@
           <div class="btn-group" v-else @click.prevent="bookEvent()">
             <router-link
               class="btn white--text"
-              :to="{ name: 'book', params: { event: event } }"
+              :to="{ name: 'book', params: { eventId: event._id } }"
               >Book
             </router-link>
           </div>
