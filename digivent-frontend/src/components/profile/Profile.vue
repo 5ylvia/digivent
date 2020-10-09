@@ -1,85 +1,85 @@
 <template>
   <div class="wrap">
     <div class="profile">
-    <v-layout column v-if="isSpeaker === 'yes'" class="speaker">
-      <div class="top">
-        <h1>Speaker Profile</h1>
-        <img :src="speaker.image" />
-      </div>
-      <v-flex class="profile-box">
-        <v-row>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-subtitle>First Name</v-list-item-subtitle>
-              <v-list-item-title>{{ speaker.firstName }}</v-list-item-title>
-              <hr />
-            </v-list-item-content>
-          </v-list-item>
-        </v-row>
-        <v-row>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-subtitle>Last Name</v-list-item-subtitle>
-              <v-list-item-title>{{ speaker.lastName }}</v-list-item-title>
-              <hr />
-            </v-list-item-content>
-          </v-list-item>
-        </v-row>
-        <v-row>
-          <v-list-item>
+      <v-layout column v-if="isSpeaker === 'yes'" class="speaker">
+        <div class="top">
+          <h1>Speaker Profile</h1>
+          <img :src="speaker.image" />
+        </div>
+        <v-flex class="profile-box">
+          <v-row>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-subtitle>First Name</v-list-item-subtitle>
+                <v-list-item-title>{{ speaker.firstName }}</v-list-item-title>
+                <hr />
+              </v-list-item-content>
+            </v-list-item>
+          </v-row>
+          <v-row>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-subtitle>Last Name</v-list-item-subtitle>
+                <v-list-item-title>{{ speaker.lastName }}</v-list-item-title>
+                <hr />
+              </v-list-item-content>
+            </v-list-item>
+          </v-row>
+          <v-row>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-subtitle>Username</v-list-item-subtitle>
+                <v-list-item-title>{{ speaker.userName }}</v-list-item-title>
+                <hr />
+              </v-list-item-content>
+            </v-list-item>
+          </v-row>
+          <v-row>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-subtitle>Email</v-list-item-subtitle>
+                <v-list-item-title>{{ speaker.email }}</v-list-item-title>
+                <hr />
+              </v-list-item-content>
+            </v-list-item>
+          </v-row>
+          <v-row>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-subtitle>Description</v-list-item-subtitle>
+                <v-list-item-title>{{ speaker.description }}</v-list-item-title>
+                <hr />
+              </v-list-item-content>
+            </v-list-item>
+          </v-row>
+        </v-flex>
+        <a v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut">Log Out</a>
+      </v-layout>
+
+      <v-layout v-else class="user">
+        <div class="top">
+          <h1>User Profile</h1>
+          <img :src="user.image" />
+        </div>
+        <v-flex class="profile-box">
+          <v-row>
             <v-list-item-content>
               <v-list-item-subtitle>Username</v-list-item-subtitle>
-              <v-list-item-title>{{ speaker.userName }}</v-list-item-title>
+              <v-list-item-title>{{ user.userName }}</v-list-item-title>
               <hr />
             </v-list-item-content>
-          </v-list-item>
-        </v-row>
-        <v-row>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-subtitle>Email</v-list-item-subtitle>
-              <v-list-item-title>{{ speaker.email }}</v-list-item-title>
-              <hr />
-            </v-list-item-content>
-          </v-list-item>
-        </v-row>
-        <v-row>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-subtitle>Description</v-list-item-subtitle>
-              <v-list-item-title>{{ speaker.description }}</v-list-item-title>
-              <hr />
-            </v-list-item-content>
-          </v-list-item>
-        </v-row>
-      </v-flex>
-      <a v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut">Log Out</a>
-    </v-layout>
-
-    <v-layout v-else class="user">
-      <div class="top">
-        <h1>User Profile</h1>
-        <img :src="user.image" />
-      </div>
-      <v-flex class="profile-box">
-        <v-row>
-          <v-list-item-content>
-            <v-list-item-subtitle>Username</v-list-item-subtitle>
-            <v-list-item-title>{{ user.userName }}</v-list-item-title>
-            <hr />
-          </v-list-item-content>
-        </v-row>
-        <v-row>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-subtitle>Email</v-list-item-subtitle>
-              <v-list-item-title>{{ user.email }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-row>
-      </v-flex>
-      <a v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut">Log Out</a>
-    </v-layout>
+          </v-row>
+          <v-row>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-subtitle>Email</v-list-item-subtitle>
+                <v-list-item-title>{{ user.email }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-row>
+        </v-flex>
+        <a v-if="loggedIn === 'yes'" @click.prevent="setLoggedOut">Log Out</a>
+      </v-layout>
     </div>
   </div>
 </template>
@@ -96,7 +96,7 @@ export default {
       loggedIn: localStorage.loggedIn,
       user: {},
       isSpeaker: "no",
-      speaker: {}
+      speaker: {},
     };
   },
   created: function() {
@@ -133,10 +133,6 @@ export default {
 <style lang="scss" scoped>
 @import "@/style/_variables.scss";
 
-h1 {
-  @include heading-large;
-}
-
 .info {
   position: relative;
   display: flex;
@@ -161,14 +157,13 @@ h1 {
   justify-content: center;
   text-align: center;
   align-items: center;
-  
 }
 .profile-box {
   position: absolute;
-  top:50%;
-left: 50%;
-transform: translate(-50%, -50%); 
-margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
   width: 60%;
   background-color: white;
   padding: 50px;

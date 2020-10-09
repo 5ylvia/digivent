@@ -191,7 +191,6 @@ h1 {
   width: 100%;
   display: flex;
   justify-content: center;
-  @include heading-large;
   color: black;
 }
 .login {

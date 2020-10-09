@@ -196,6 +196,18 @@ export default {
   height: 30%;
   background: $primary;
 }
+
+.title {
+  position: absolute;
+  left: 30px;
+  top: 50px;
+  color: white;
+  font-weight: 400;
+  @include desktop {
+    left: 5%;
+  }
+}
+
 .thumb {
   &-speaker {
     z-index: 1;
@@ -203,7 +215,10 @@ export default {
     top: -80px;
     right: 30px;
     @include desktop {
-      right: 5%;
+      position: relative;
+      top: 0;
+      left: -30px;
+      right: auto;
     }
   }
   &-img--large {
@@ -226,16 +241,7 @@ export default {
     margin: 0 5% 5%;
   }
 }
-.title {
-  position: absolute;
-  left: 30px;
-  top: 50px;
-  color: white;
-  font-weight: 400;
-  @include desktop {
-    left: 5%;
-  }
-}
+
 .btn {
   @include buttonprimary;
   width: 100%;
