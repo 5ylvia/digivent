@@ -101,6 +101,10 @@ const routes = [
     path: "/my-events",
     component: () => import("./components/my-event/MyEvent.vue"),
     props: true,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem("userName")) return next("login");
+      next();
+    },
   },
 ];
 
