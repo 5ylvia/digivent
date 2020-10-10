@@ -145,23 +145,4 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
-// .dot {
-//   top: 0;
-//   right: 0;
-//   display: block;
-//   position: relative;
-//   float: right;
-// &-unread {
-//   position: absolute;
-//   top: 0px;
-//   right: 0px;
-//   padding: 5px 5px;
-//   border-radius: 50%;
-//   background: $secondary;
-// }
-// }
-// .seen {
-//   background: none;
-// }
 </style>

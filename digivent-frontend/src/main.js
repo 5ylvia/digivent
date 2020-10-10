@@ -22,7 +22,7 @@ const routes = [
   },
   {
     name: "detail",
-    path: "/:eventId/detail",
+    path: "/:eventId?/detail",
     component: () => import("./components/event-detail/EventDetail"),
     props: true,
     beforeEnter: (to, from, next) => {
@@ -32,7 +32,7 @@ const routes = [
   },
   {
     name: "book",
-    path: "/:eventId?/booking",
+    path: "/:userId?/:eventId?/booking",
     component: () => import("./components/book/BookEvent"),
     props: true,
   },

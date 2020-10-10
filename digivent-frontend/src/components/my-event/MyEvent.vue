@@ -6,19 +6,24 @@
         <router-link class="button" :to="{ name: 'edit' }"
           >+ Add New event</router-link
         >
-        <div class="contents__box" v-for="(event, i) in events" :key="i">
+        <v-card class="contents__box" v-for="(event, i) in events" :key="i">
           <router-link
             v-bind:to="{ name: 'detail', params: { eventId: event._id } }"
           >
-            <h6>{{ event.time }} {{ event.date }}</h6>
+            <h6 class="pb-2">{{ event.time }}| {{ event.date }}</h6>
             <h2>{{ event.name }}</h2>
+            <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
           </router-link>
-        </div>
+        </v-card>
       </div>
 
       <div v-else>
         <h1>My Tickets</h1>
-        <div class="contents__box" v-for="(event, i) in user.events" :key="i">
+        <v-card
+          class="contents__box"
+          v-for="(event, i) in user.events"
+          :key="i"
+        >
           <router-link
             class="button"
             v-bind:to="{
@@ -26,10 +31,11 @@
               params: { userId: user._id, eventId: event._id },
             }"
           >
-            <h6>{{ event.time }} {{ event.date }}</h6>
+            <h6 class="pb-1">{{ event.time }}| {{ event.date }}</h6>
             <h2>{{ event.name }}</h2>
+            <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
           </router-link>
-        </div>
+        </v-card>
       </div>
     </div>
   </div>
@@ -78,6 +84,10 @@ export default {
   margin-top: 10rem;
   text-align: center;
   width: 60%;
+  @include desktop {
+    justify-content: left;
+    text-align: left;
+  }
 }
 .contents__box {
   text-transform: capitalize;
@@ -85,13 +95,20 @@ export default {
   padding: 10px;
   position: relative;
   display: flex;
-  flex-direction: row;
+  // flex-direction: row;
   border-radius: 20px;
   margin-top: 20px;
+  height: 130px;
   background-color: white;
   color: black;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   text-align: left;
+  @include desktop {
+    justify-content: left;
+    text-align: left;
+    width: 250px;
+    height: 150px;
+  }
 }
 .wrap {
   display: flex;
@@ -99,6 +116,10 @@ export default {
   width: 100vw;
   background-color: $primary;
   height: 100vh;
+  @include desktop {
+    justify-content: left;
+    padding-left: 10rem;
+  }
 }
 h2 {
   text-transform: uppercase;
@@ -114,25 +135,12 @@ h1 {
   margin-bottom: 1rem;
 }
 .button {
-  background-color: $secondary;
-  color: white;
+  width: 100%;
+  align-content: space-around;
+  // background-color: $secondary;
+  // color: white;
   filter: drop-shadow(0px 4px 4px $secondary-dark 0.25);
   padding: 10px;
   border-radius: 10px;
-}
-@media only screen and (min-width: 600px) {
-  .wrap {
-    justify-content: left;
-    padding-left: 10rem;
-  }
-  .contents {
-    justify-content: left;
-    text-align: left;
-  }
-  .contents__box {
-    justify-content: left;
-    text-align: left;
-    width: 70%;
-  }
 }
 </style>

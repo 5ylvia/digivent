@@ -198,28 +198,12 @@ export default {
 }
 
 .title {
-  position: absolute;
-  left: 30px;
-  top: 50px;
-  color: white;
-  font-weight: 400;
-  @include desktop {
-    left: 5%;
-  }
+  @include title;
 }
 
 .thumb {
   &-speaker {
-    z-index: 1;
-    position: absolute;
-    top: -80px;
-    right: 30px;
-    @include desktop {
-      position: relative;
-      top: 0;
-      left: -30px;
-      right: auto;
-    }
+    @include thumb-speaker;
   }
   &-img--large {
     @include thumb-img--large;
@@ -227,27 +211,13 @@ export default {
 }
 
 .rounded-box {
-  background: white;
-  position: absolute;
-  top: 15%;
-  width: 100%;
-  margin-top: 5%;
-  padding: 50px;
-  @include desktop {
-    width: 80%;
-    height: 70%;
-    top: auto;
-    bottom: 0;
-    margin: 0 5% 5%;
-  }
+  @include rounded-box;
 }
 
 .btn {
   @include buttonprimary;
-  width: 100%;
   &--light {
-    background: $secondary-light;
-    justify-items: stretch;
+    @include buttonlight;
   }
   &-group {
     display: flex;
