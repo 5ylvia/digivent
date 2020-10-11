@@ -157,10 +157,8 @@ export default {
 
 .btn {
   @include buttonprimary;
-  width: 100%;
   &--light {
-    background: $secondary-light;
-    justify-items: stretch;
+    @include buttonlight;
   }
   &-group {
     display: flex;

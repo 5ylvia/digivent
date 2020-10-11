@@ -44,7 +44,6 @@ import EventThumbList from "../event/EventThumbList";
 
 export default {
   name: "speaker-detail",
-  props: ["events"],
   components: {
     EventThumbList,
   },

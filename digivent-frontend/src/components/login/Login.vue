@@ -64,7 +64,7 @@
         </div>
 
         <v-text-field
-          v-model="speaker.password"
+          v-model="speaker.userName"
           :counter="10"
           label="User Name"
           id="username"

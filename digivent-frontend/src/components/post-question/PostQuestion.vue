@@ -17,26 +17,26 @@
         </v-flex>
         <v-layout>
           <v-form @submit.prevent="checkForm">
-            <v-col xs12 class="pt-0">
+            <v-col class="pt-0">
               <h5 class="text--secondary mb-1">Host name</h5>
               <h2 class="font-weight-medium">
                 {{ question.speaker.firstName }} {{ question.speaker.lastName }}
               </h2>
             </v-col>
-            <v-col xs12 class="pt-0">
+            <v-col class="pt-0">
               <h5 class="text--secondary mb-1">Event name</h5>
               <h2 class="font-weight-medium">
                 {{ question.event.name }}
               </h2>
             </v-col>
-            <v-col xs12 class="py-0">
+            <v-col class="py-0">
               <v-textarea
                 v-model="question.body"
                 label="Type question here.."
                 clearable
               ></v-textarea>
             </v-col>
-            <v-col xs12 class="py-0">
+            <v-col class="py-0">
               <input
                 class="primary--text btn btn--light"
                 type="submit"

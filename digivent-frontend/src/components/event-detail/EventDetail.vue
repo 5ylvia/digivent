@@ -223,7 +223,6 @@ export default {
     left: 5%;
   }
 }
-
 .btn {
   @include buttonprimary;
   &--light {

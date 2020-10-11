@@ -6,7 +6,7 @@
         <img
           src="@/assets/Frame 12.svg"
           alt="Frame"
-          @click.prevent="closePage(event._id)"
+          @click.prevent="closePage()"
         />
         <h2>Host Details</h2>
       </v-flex>
@@ -124,8 +124,8 @@ export default {
     };
   },
   methods: {
-    closePage: function(eventId) {
-      this.$router.push({ name: "detail", params: { eventId: eventId } });
+    closePage: function() {
+      this.$router.push("/my-events");
     },
     checkForm: function() {
       if (

@@ -1,8 +1,16 @@
 <template>
   <v-main>
     <div aspect-ratio="1.4" class="header"></div>
+    <v-layout column v-if="isEmpty === 'yes'">
+      <v-flex class="title--center">
+        <h1>Questions</h1>
+      </v-flex>
+      <v-card class="rounded-xl message-box">
+        <h3 class="text-center">You don't have any questions.</h3>
+      </v-card>
+    </v-layout>
 
-    <v-layout column v-if="isEmpty == 'no'">
+    <v-layout column v-else>
       <v-flex class="title--center">
         <h1>Questions</h1>
       </v-flex>
@@ -46,10 +54,6 @@
         </v-list>
       </v-card>
     </v-layout>
-    <v-layout column v-else>
-      <h1>My Questions</h1>
-      <h3>You don't have any questions.</h3>
-    </v-layout>
   </v-main>
 </template>
 
@@ -58,7 +62,6 @@ export default {
   name: "my-questions",
   data: function() {
     return {
-      seen: {},
       isEmpty: "no",
       questions: [],
     };
@@ -74,23 +77,16 @@ export default {
     }
   },
   methods: {
-    isSeen: function(event, i) {
-      if (this.seen[i]) {
-        this.seen[i] = false;
-      } else if (!this.seen[i]) {
-        this.$set(this.seen, i, true);
-      }
-    },
     getQuestions: function(id, person) {
       this.$http
         .get(`${process.env.VUE_APP_API_URL}${person}/${id}/questions`)
         .then(function(data) {
           this.questions = data.body;
         });
-      if (this.questions.length > 0) {
-        this.isEmpty = "yes";
-      } else {
+      if (this.questions.lenght > 0) {
         this.isEmpty = "no";
+      } else {
+        this.isEmpty = "yes";
       }
     },
   },

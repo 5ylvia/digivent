@@ -1,9 +1,11 @@
 <template>
   <div class="wrap">
-    <div class="contents">
-      <div v-if="isSpeaker === 'yes'">
+    <div class="contents" v-if="isSpeaker === 'yes'">
+      <v-flex class="title">
         <h1>My Events</h1>
-        <router-link class="button" :to="{ name: 'edit' }"
+      </v-flex>
+      <v-flex>
+        <router-link class="btn white--text" :to="{ name: 'edit' }"
           >+ Add New event</router-link
         >
         <v-card class="contents__box" v-for="(event, i) in events" :key="i">
@@ -15,28 +17,23 @@
             <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
           </router-link>
         </v-card>
-      </div>
-
-      <div v-else>
-        <h1>My Tickets</h1>
-        <v-card
-          class="contents__box"
-          v-for="(event, i) in user.events"
-          :key="i"
+      </v-flex>
+    </div>
+    <div v-else class="contents">
+      <h1>My Tickets</h1>
+      <v-card class="contents__box" v-for="(event, i) in user.events" :key="i">
+        <router-link
+          class="button"
+          v-bind:to="{
+            name: 'book',
+            params: { userId: user._id, eventId: event._id },
+          }"
         >
-          <router-link
-            class="button"
-            v-bind:to="{
-              name: 'book',
-              params: { userId: user._id, eventId: event._id },
-            }"
-          >
-            <h6 class="pb-1">{{ event.time }}| {{ event.date }}</h6>
-            <h2>{{ event.name }}</h2>
-            <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
-          </router-link>
-        </v-card>
-      </div>
+          <h6 class="pb-1">{{ event.time }}| {{ event.date }}</h6>
+          <h2>{{ event.name }}</h2>
+          <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
+        </router-link>
+      </v-card>
     </div>
   </div>
 </template>
@@ -80,10 +77,11 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-items: center;
-  margin-top: 10rem;
+  margin: 100px 0;
   text-align: center;
-  width: 60%;
+  width: 100%;
   @include desktop {
     justify-content: left;
     text-align: left;
@@ -92,10 +90,10 @@ export default {
 .contents__box {
   text-transform: capitalize;
   justify-content: center;
-  padding: 10px;
-  position: relative;
+  padding: 20px;
+  width: 300px;
   display: flex;
-  // flex-direction: row;
+  margin: auto;
   border-radius: 20px;
   margin-top: 20px;
   height: 130px;
@@ -106,7 +104,6 @@ export default {
   @include desktop {
     justify-content: left;
     text-align: left;
-    width: 250px;
     height: 150px;
   }
 }
@@ -115,7 +112,7 @@ export default {
   justify-content: center;
   width: 100vw;
   background-color: $primary;
-  height: 100vh;
+  // height: 100vh;
   @include desktop {
     justify-content: left;
     padding-left: 10rem;
@@ -137,10 +134,20 @@ h1 {
 .button {
   width: 100%;
   align-content: space-around;
-  // background-color: $secondary;
-  // color: white;
   filter: drop-shadow(0px 4px 4px $secondary-dark 0.25);
   padding: 10px;
   border-radius: 10px;
+}
+
+.btn {
+  @include buttonprimary;
+  &--light {
+    @include buttonlight;
+  }
+  &-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 </style>

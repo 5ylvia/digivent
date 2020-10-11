@@ -71,7 +71,7 @@ export default {
       },
     };
   },
-  mounted: function() {
+  created: function() {
     const eventId = this.$route.params.eventId;
     const userId = this.$route.params.userId;
     this.$http
@@ -100,6 +100,7 @@ export default {
 
 <style lang="scss">
 @import "@/style/_variables.scss";
+
 .header {
   width: 100%;
   height: 30%;
@@ -107,14 +108,7 @@ export default {
 }
 
 .title {
-  position: absolute;
-  left: 30px;
-  top: 50px;
-  color: white;
-  font-weight: 400;
-  @include desktop {
-    left: 5%;
-  }
+  @include title;
 }
 .rounded-box {
   @include rounded-box;
@@ -126,10 +120,16 @@ export default {
     font-weight: 600;
   }
 }
+
 .btn {
   @include buttonprimary;
   &--light {
     @include buttonlight;
+  }
+  &-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 </style>
