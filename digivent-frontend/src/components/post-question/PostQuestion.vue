@@ -74,7 +74,6 @@ export default {
     },
     createQuestion: function(question) {
       const userId = localStorage.userId;
-      console.log(question);
       this.$http
         .post(
           `${process.env.VUE_APP_API_URL}users/${userId}/question`,

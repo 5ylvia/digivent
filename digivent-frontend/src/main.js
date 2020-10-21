@@ -82,7 +82,7 @@ const routes = [
   },
   {
     name: "user-reply-question",
-    path: "/:questionId/user-reply-question",
+    path: "/:questionId?/user-reply-question",
     component: () => import("./components/question-reply/UserQuestionReply"),
   },
   {

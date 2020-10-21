@@ -151,6 +151,8 @@ export default {
       position: absolute;
       // top: 40%;
       left: 40%;
+          z-index: 1;
+
     }
   }
 }
