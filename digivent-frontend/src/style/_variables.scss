@@ -21,6 +21,9 @@ $natural-light: #bdbdbd;
   &:hover {
     background: $primary;
   }
+  @include desktop {
+    width: 200px;
+  }
 }
 @mixin buttonlight {
   background: $secondary-light;
@@ -31,6 +34,9 @@ $natural-light: #bdbdbd;
   }
   a:hover {
     color: white;
+  }
+  @include desktop {
+    width: 200px;
   }
 }
 

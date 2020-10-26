@@ -81,13 +81,13 @@ export default {
       this.$http
         .get(`${process.env.VUE_APP_API_URL}${person}/${id}/questions`)
         .then(function(data) {
-          this.questions = data.body;
-        });
-      if (this.questions.lenght > 0) {
-        this.isEmpty = "no";
-      } else {
-        this.isEmpty = "yes";
-      }
+            if (this.questions.lenght > 0) {
+              this.isEmpty = "no";
+            } else {
+              this.isEmpty = "yes";
+              this.questions = data.body;
+            }
+      });
     },
   },
 };
