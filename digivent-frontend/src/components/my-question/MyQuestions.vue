@@ -78,13 +78,13 @@ export default {
   },
   methods: {
     getQuestions: function(id, person) {
-      this.$http
+      if (this.questions.lenght > 0) {
+        this.isEmpty = "no";
+        this.$http
         .get(`${process.env.VUE_APP_API_URL}${person}/${id}/questions`)
         .then(function(data) {
           this.questions = data.body;
         });
-      if (this.questions.lenght > 0) {
-        this.isEmpty = "no";
       } else {
         this.isEmpty = "yes";
       }
