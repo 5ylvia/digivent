@@ -62,7 +62,6 @@ export default {
   name: "my-questions",
   data: function() {
     return {
-      // isEmpty: "no",
       questions: [],
     };
   },

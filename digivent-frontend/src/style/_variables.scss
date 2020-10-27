@@ -19,7 +19,6 @@ $xs: 600px;
     @content;
   }
 }
-
 /* Button */
 @mixin buttonprimary {
   display: flex;
@@ -105,6 +104,48 @@ $xs: 600px;
   padding: 30px 40px 100px;
   margin: 15% 5% 0;
   width: 90%;
+  @include desktop {
+    width: 80%;
+    height: 70%;
+    top: auto;
+    bottom: 0;
+    margin: 0 5% 5%;
+  }
+}
+@mixin thumb-speaker {
+  z-index: 1;
+  position: absolute;
+  top: -80px;
+  right: 30px;
+  @include desktop {
+    position: relative;
+    top: 0;
+    left: -30px;
+    right: auto;
+  }
+  &-events {
+    position: absolute;
+    top: 350px;
+    left: 0;
+    margin-bottom: 100px;
+    @include desktop {
+      @include position-bottom;
+      bottom: 0;
+      left: 300px;
+      top: auto;
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Layout */
+@mixin rounded-box {
+  background: white;
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  margin-top: 5%;
+  padding: 50px;
   @include desktop {
     width: 80%;
     height: 70%;

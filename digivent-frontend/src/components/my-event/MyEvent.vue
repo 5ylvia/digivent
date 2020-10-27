@@ -111,7 +111,6 @@ export default {
       margin-left: 5%;
     }
   }
-
 }
 .contents__box {
   text-transform: capitalize;
@@ -134,7 +133,6 @@ export default {
     margin: 24px 24px 0 0;
   }
 }
-
 h2 {
   text-transform: uppercase;
   font-weight: 600;
