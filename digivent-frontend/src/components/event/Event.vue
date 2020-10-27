@@ -144,6 +144,8 @@ export default {
   height: 90%;
   @include desktop {
     position: static;
+      height: auto;
+
   }
 }
 .text-white {
@@ -152,4 +154,5 @@ export default {
     font-weight: 400;
   }
 }
+
 </style>

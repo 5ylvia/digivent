@@ -2,7 +2,7 @@
   <div>
     <!-- Nav bar for web -->
     <div class="d-none d-sm-flex navbar">
-      <img src="@/assets/logo-icon.svg/" class="logo mr-auto" alt="logo" />
+      <a class="logo" href="/"><img src="@/assets/logo-icon.svg/" class="logo mr-auto" alt="logo-img" /></a>
       <router-link class="link" v-bind:to="'/'">Home</router-link>
       <router-link class="link" :to="'/my-questions'">Questions</router-link>
       <router-link class="link" :to="'/my-events'">My Events</router-link>
@@ -89,8 +89,15 @@ export default {
 <style lang="scss" scoped>
 @import "@/style/_variables.scss";
 .logo {
-  width: 50px;
-  margin-left: 50px;
+  display: flex;
+  position: absolute;
+  left: 8px;
+  top:5px;
+  // width: 50px;
+  // height: 50px;
+  &-img {
+    width: 50px;
+  }
 }
 .navbar {
   display: flex;

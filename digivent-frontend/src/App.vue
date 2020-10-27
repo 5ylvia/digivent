@@ -25,41 +25,50 @@ export default {
   box-sizing: border-box !important;
   //   color: black;
 }
-h1,
-h2 {
-  font-weight: 600;
-}
-// #app {
-//   width: 100vw;
-//   height: 90vh;
-// }
 
-// .body {
-//   &-main {
-//     position: relative;
-//     @include desktop {
-//       margin-top: 100px;
-//     }
-//   }
-//   &-round {
-//     width: 100%;
-//     position: absolute;
-//     top: 200px;
-//     border-radius: 20px;
-//     background: white;
-//     padding: 28px;
-//   }
-// &-inner {
-//   width: 100%;
-//   padding: 0 16px;
-//   @include desktop {
-//     margin: 0;
-//   }
-// }
-// &--flex {
-//   flex-direction: column;
-//   display: flex;
-//   align-content: flex-end;
-// }
-// }
+h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  @include desktop {
+    font-size: 2.3rem;
+  }
+}
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  @include desktop {
+    font-size: 1.8rem;
+  }
+}
+h3 {
+  font-size: 1.2rem;
+  @include desktop {
+    font-size: 1.6rem;
+  }
+}
+h4 {
+  font-size: 1rem;
+  @include desktop {
+    font-size: 1.2rem;
+  }
+}
+p {
+  font-size: 0.9rem;
+    @include desktop {
+    font-size: 1.2rem;
+  }
+}
+h5 {
+  font-size: 0.8rem;
+  @include desktop {
+    font-size: 1rem;
+  }
+}
+h6 {
+  font-size: 0.7rem;
+  @include desktop {
+    font-size: 0.9rem;
+  }
+}
+
 </style>

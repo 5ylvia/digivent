@@ -10,7 +10,7 @@
         />
         <h2>Event Details</h2>
       </v-flex>
-      <v-flex class="rounded-xl rounded-box--ma">
+      <v-flex class="rounded-xl rounded-box">
         <v-layout class="flex-column textbox">
           <v-row class="py-4 align-center">
             <h1>{{ event.name }}</h1>
@@ -75,7 +75,7 @@
             <v-img aspect-ratio="1" :src="event.image" :alt="event.name" />
           </v-flex>
           <!-- speaker's button -->
-          <div v-if="isSpeaker === 'yes'">
+          <div v-if="isSpeaker === 'yes'" class="btn-box">
             <a
               class="btn btn--light"
               @click.prevent="deleteEvent(event._id, event.speaker._id)"
@@ -176,20 +176,7 @@ export default {
 }
 
 .rounded-box {
-  &--ma {
-    background: white;
-    position: absolute;
-    top: 15%;
-    padding: 50px;
-    margin: 5%;
-    @include desktop {
-      width: 80%;
-      height: 70%;
-      top: auto;
-      bottom: 0;
-      margin: 0 5% 5%;
-    }
-  }
+    @include rounded-box
 }
 
 .imagebox {
@@ -232,6 +219,10 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+  &-box {
+    justify-content: center;
+    display: flex;
   }
 }
 </style>

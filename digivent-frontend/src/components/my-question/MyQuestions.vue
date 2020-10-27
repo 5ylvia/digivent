@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <div aspect-ratio="1.4" class="header"></div>
-    <v-layout column v-if="isEmpty === 'yes'">
+    <v-layout column v-if="!questions.length">
       <v-flex class="title--center">
         <h1>Questions</h1>
       </v-flex>
@@ -62,7 +62,7 @@ export default {
   name: "my-questions",
   data: function() {
     return {
-      isEmpty: "no",
+      // isEmpty: "no",
       questions: [],
     };
   },
@@ -78,16 +78,11 @@ export default {
   },
   methods: {
     getQuestions: function(id, person) {
-      if (this.questions.lenght > 0) {
-        this.isEmpty = "no";
         this.$http
         .get(`${process.env.VUE_APP_API_URL}${person}/${id}/questions`)
         .then(function(data) {
           this.questions = data.body;
         });
-      } else {
-        this.isEmpty = "yes";
-      }
     },
   },
 };

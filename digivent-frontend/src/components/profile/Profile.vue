@@ -104,12 +104,14 @@
           </v-list-item>
           <v-divider></v-divider>
         </v-list>
-        <a
-          class="btn white--text"
-          v-if="loggedIn === 'yes'"
-          @click.prevent="setLoggedOut"
-          >Log Out</a
-        >
+        <div class=" btn-bottom">
+          <a
+            class="btn white--text"
+            v-if="loggedIn === 'yes'"
+            @click.prevent="setLoggedOut"
+            >Log Out</a
+          >
+        </div>
       </v-flex>
     </v-layout>
   </v-main>
@@ -215,6 +217,13 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+    &-bottom {
+    position: fixed;
+    bottom: 80px;
+    left: 0;
+    width: 100%;
+    padding: 50px;
   }
 }
 </style>

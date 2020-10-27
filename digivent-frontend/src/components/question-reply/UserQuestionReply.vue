@@ -18,26 +18,26 @@
             :src="question.speaker.image" :alt="question.speaker.firstName"          />
         </v-flex>
         <v-flex>
-          <v-col cols="12" sm="6" class="pt-0">
-            <h5 class="text--secondary mb-1">User Name</h5>
+          <v-col cols="12" sm="6" class="pa-0">
+            <h5 class="text--secondary mb-1">Host Name</h5>
             <h2 class="font-weight-medium">
               {{ question.speaker.firstName }} {{ question.speaker.lastName }}
             </h2>
-            <h4>{{ question.event.name }}</h4>
+            <h4 class="text--secondary my-1">{{ question.event.name }}</h4>
           </v-col>
         </v-flex>
       </v-flex>
-        <v-list three-line class="mt-10 left-box">
-          <v-list-item class="flex-row">
+      <v-list three-line class="mt-10 left-box">
+          <v-list-item class="flex-row pa-0">
             <v-list-item-content class="border-box">
               <v-list-item-subtitle class="text-break"
-                >First Name</v-list-item-subtitle
+                >User Name</v-list-item-subtitle
               >
               <v-list-item-title v-text="question.user.userName"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-divider></v-divider>
-          <v-list-item class="flex-row">
+          <v-list-item class="flex-row pa-0">
             <v-list-item-content class="border-box">
               <v-list-item-subtitle
                 >Question</v-list-item-subtitle
@@ -48,48 +48,39 @@
             </v-list-item-content>
           </v-list-item>
           <v-divider></v-divider>
+          <v-list-item class="flex-row pa-0">
+            <v-list-item-content class="border-box">
+              <div v-if="isSpeaker === 'yes'" class="response response--yes">
+                <v-list-item-subtitle
+                >Response</v-list-item-subtitle>
+                <v-form v-on:submit.prevent="checkForm">
+                  <v-col class="pa-0">
+                    <v-textarea
+                      v-model="question.response"
+                      id="response"
+                      name="response"
+                      label="Type response here.."
+                      clearable
+                    ></v-textarea>
+                  </v-col>
+                  <v-col>
+                    <input type="submit" class="primary--text btn btn--light" value="Submit" />
+                  </v-col>
+                </v-form>
+              </div>
+              <v-flex v-else>
+                <v-card-title primary-title class="pa-0 mb-10">
+                  <div>
+                    <h5>Response</h5>
+                    <h4> {{question.response}} </h4>
+                  </div>
+                </v-card-title>
+              </v-flex>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
     </v-layout>
   </v-main>
-<!-- 
-  <div>
-    <div>
-      <div class="thumb thumb--b">
-        <img :src="question.speaker.image" :alt="question.speaker.firstName" />
-      </div>
-      <p>Host name</p>
-      <h3>{{ question.speaker.firstName }} {{ question.speaker.lastName }}</h3>
-
-      <div>
-        <div>
-          <h4>User Name</h4>
-          <h3>{{ question.user.userName }}</h3>
-          <h4>Question</h4>
-          <p>{{ question.body }}</p>
-          <hr />
-          <h4>Response</h4>
-          <p>{{question.response}}</p>
-          <hr />
-          <div v-if="isSpeaker === 'yes'" class="response response--yes">
-            <form v-on:submit.prevent="checkForm">
-              <div>
-                <input
-                  v-model="question.response"
-                  id="response"
-                  name="response"
-                  type="text"
-                  placeholder="Type response here.."
-                />
-              </div>
-              <div>
-                <input type="submit" value="Submit" />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -242,7 +233,19 @@ export default {
   }
 }
 .left-box {
-  width: 50%;
-  margin-left: 40%;
+  margin: 15%;
+  @include desktop {
+    width: 50%;
+    margin-left: 40%;
+  }
 }
+.wrap-text {
+  -webkit-line-clamp: unset !important;
+}
+// .multi-line {
+//   height: 5rem;
+//   overflow: scroll;
+//   -webkit-line-clamp: unset !important;
+//   white-space: normal;
+// }
 </style>
