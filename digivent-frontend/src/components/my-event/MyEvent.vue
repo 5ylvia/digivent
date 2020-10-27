@@ -1,41 +1,47 @@
 <template>
-  <div class="wrap">
-    <div class="contents" v-if="isSpeaker === 'yes'">
-      <v-flex class="title">
+  <v-main class="bg-color">
+    <div v-if="isSpeaker === 'yes'">
+      <v-flex class="title--center">
         <h1>My Events</h1>
       </v-flex>
-      <v-flex>
+      <v-flex class="position">
         <router-link class="btn white--text" :to="{ name: 'edit' }"
-          >+ Add New event</router-link
-        >
-        <v-card class="contents__box" v-for="(event, i) in events" :key="i">
-          <router-link
-            v-bind:to="{ name: 'detail', params: { eventId: event._id } }"
+            >+ Add New event</router-link
           >
-            <h6 class="pb-2">{{ event.time }}| {{ event.date }}</h6>
-            <h2>{{ event.name }}</h2>
-            <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
-          </router-link>
-        </v-card>
       </v-flex>
+      <div class="contents">
+          <v-card class="contents__box" v-for="(event, i) in events" :key="i">
+            <router-link
+              v-bind:to="{ name: 'detail', params: { eventId: event._id } }"
+            >
+              <h6 class="pb-2">{{ event.time }}| {{ event.date }}</h6>
+              <h2>{{ event.name }}</h2>
+              <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
+            </router-link>
+          </v-card>
+      </div>
     </div>
-    <div v-else class="contents">
-      <h1>My Tickets</h1>
-      <v-card class="contents__box" v-for="(event, i) in user.events" :key="i">
-        <router-link
-          class="button"
-          v-bind:to="{
-            name: 'book',
-            params: { userId: user._id, eventId: event._id },
-          }"
-        >
-          <h6 class="pb-1">{{ event.time }}| {{ event.date }}</h6>
-          <h2>{{ event.name }}</h2>
-          <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
-        </router-link>
-      </v-card>
+    <div v-else>
+      <v-flex class="title--center">
+        <h1>My Tickets</h1>
+      </v-flex>
+      <div class="contents contents-margin">
+          <v-card class="contents__box" v-for="(event, i) in user.events" :key="i">
+            <router-link
+              class="button"
+              v-bind:to="{
+                name: 'book',
+                params: { userId: user._id, eventId: event._id },
+              }"
+            >
+              <h6 class="pb-1">{{ event.time }}| {{ event.date }}</h6>
+              <h2>{{ event.name }}</h2>
+              <h4>{{ event.speaker.firstName }} {{ event.speaker.lastName }}</h4>
+            </router-link>
+          </v-card>
+      </div>
     </div>
-  </div>
+  </v-main>
 </template>
 <script>
 export default {
@@ -72,6 +78,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/style/_variables.scss";
+.bg-color {
+  background-color: $primary;
+  height: 100%;
+  width: 100vw;
+  @include desktop {
+    justify-content: left;
+    padding-left: 10rem;
+    height: 100%;
+  }
+}
 
 .contents {
   position: relative;
@@ -79,12 +95,21 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
   justify-items: center;
-  margin: 100px 0;
   text-align: center;
   width: 100%;
   @include desktop {
+    margin-top: 100px;
     justify-content: left;
     text-align: left;
+    flex-direction: row;
+    margin-left: 5%;
+  }
+    &-margin {
+    margin: 100px 0;
+    @include desktop {
+      margin-top: 200px;
+      margin-left: 5%;
+    }
   }
 }
 .contents__box {
@@ -105,17 +130,7 @@ export default {
     justify-content: left;
     text-align: left;
     height: 150px;
-  }
-}
-.wrap {
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  background-color: $primary;
-  // height: 100vh;
-  @include desktop {
-    justify-content: left;
-    padding-left: 10rem;
+    margin: 24px 24px 0 0;
   }
 }
 h2 {
@@ -148,6 +163,28 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+}
+
+.title--center {
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  color: white;
+  font-weight: 400;
+  text-align: center;
+  @include desktop {
+    left: 5%;
+    top: 60px;
+    text-align: left;
+  }
+}
+.position {
+  margin: 130px 50px 20px;
+  @include desktop {
+    // margin-top: 200px;
+    // margin-left: 5%;
+    margin: 200px 5% 0;
   }
 }
 </style>

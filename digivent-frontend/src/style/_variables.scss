@@ -6,6 +6,19 @@ $secondary-dark: #379683;
 $natural-dark: #5f5f5f;
 $natural-light: #bdbdbd;
 
+/* Responsive Size */
+$xs: 600px;
+
+@mixin mobile {
+  @media (max-width: #{$xs - 1px}) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: #{$xs}) {
+    @content;
+  }
+}
 /* Button */
 @mixin buttonprimary {
   display: flex;
@@ -22,7 +35,7 @@ $natural-light: #bdbdbd;
     background: $primary;
   }
   @include desktop {
-    width: 200px;
+    max-width: 300px;
   }
 }
 @mixin buttonlight {
@@ -36,21 +49,7 @@ $natural-light: #bdbdbd;
     color: white;
   }
   @include desktop {
-    width: 200px;
-  }
-}
-
-/* Responsive Size */
-$xs: 600px;
-
-@mixin mobile {
-  @media (max-width: #{$xs - 1px}) {
-    @content;
-  }
-}
-@mixin desktop {
-  @media (min-width: #{$xs}) {
-    @content;
+    max-width: 400px;
   }
 }
 
@@ -63,8 +62,55 @@ $xs: 600px;
 }
 @mixin thumb-img--large {
   border: 6px solid white;
-  height: 150px;
-  width: 150px;
+  height: 130px;
+  width: 130px;
+  @include desktop {
+    height: 200px;
+    width: 200px;
+  }
+}
+@mixin thumb-speaker {
+  z-index: 1;
+  position: absolute;
+  top: -80px;
+  right: 30px;
+  @include desktop {
+    position: relative;
+    top: 0;
+    left: -30px;
+    right: auto;
+    width: 200px;
+  }
+  &-events {
+    position: absolute;
+    top: 350px;
+    left: 0;
+    padding-bottom: 100px;
+    @include desktop {
+      @include position-bottom;
+      bottom: 0;
+      left: 400px;
+      top: auto;
+      padding-bottom: 0;
+    }
+  }
+}
+
+/* Layout */
+@mixin rounded-box {
+  background: white;
+  position: absolute;
+  top: 15%;
+  padding: 30px 40px 100px;
+  margin: 15% 5% 0;
+  width: 90%;
+  @include desktop {
+    width: 80%;
+    height: 70%;
+    top: auto;
+    bottom: 0;
+    margin: 0 5% 5%;
+  }
 }
 @mixin thumb-speaker {
   z-index: 1;

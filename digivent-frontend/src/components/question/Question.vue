@@ -62,13 +62,13 @@
           </v-list-item>
           <v-divider v-if="i < questions.length - 1" :key="i"></v-divider>
         </template>
-        <v-col>
+        <v-flex class="btn-bottom">
           <router-link
             class="btn btn--light"
             :to="{ name: 'post-question', params: { eventId: event._id } }"
             >Ask question
           </router-link>
-        </v-col>
+        </v-flex>
       </v-list>
     </v-layout>
   </v-main>
@@ -142,17 +142,14 @@ export default {
 .scrollbar {
   padding: 0 20px;
   max-width: 700px;
-  max-height: 450px;
+  height: 300px;
   overflow-y: scroll;
   overflow-x: hidden;
   &-speaker {
     @include desktop {
       max-height: 400px;
       position: absolute;
-      // top: 40%;
       left: 40%;
-          z-index: 1;
-
     }
   }
 }
@@ -166,6 +163,13 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+  &-bottom {
+    position: fixed;
+    bottom: 80px;
+    left: 0;
+    width: 100%;
+    padding: 50px;
   }
 }
 </style>

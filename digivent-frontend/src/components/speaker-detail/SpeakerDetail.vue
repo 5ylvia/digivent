@@ -24,14 +24,14 @@
             <h1>{{ speaker.firstName }} {{ speaker.lastName }}</h1>
           </v-row>
           <v-row class="pt-6">
-            <h2 class="font-weight-medium pb-2">About</h2>
+            <h2 class="font-weight-medium pb-2">About Host</h2>
           </v-row>
           <v-row>
             <p>{{ speaker.description }}</p>
           </v-row>
         </v-flex>
       </v-flex>
-      <v-flex class="thumb-speaker-events" ml-10>
+      <v-flex class="thumb-speaker-events" ma-10>
         <h2>Up Coming Event</h2>
         <EventThumbList :events="speaker.events" />
       </v-flex>
@@ -107,7 +107,4 @@ export default {
   @include rounded-box;
 }
 
-// .overflow {
-//   overflow-x: scroll;
-// }
 </style>

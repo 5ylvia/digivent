@@ -38,4 +38,7 @@ export default {
   border: none;
   background: white;
 }
+button, input, optgroup, select, textarea {
+    padding: 20px;
+}
 </style>

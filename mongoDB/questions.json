@@ -4,7 +4,7 @@
     "speaker": {"$oid":  "5f67e74b1679d40cca533e3e"},
     "event": {"$oid":  "5f6952fe608518159f696573"},
     "body": "Lorem Ipsum is simply dummy text.",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-10T08:49:30.579Z",
     "updatedAt": "2020-10-10T08:49:30.579Z",
     "__v": 0
@@ -14,7 +14,7 @@
     "speaker": {"$oid":  "5f67e7571679d40cca533e3f" },
     "event": {"$oid":  "5f69530e608518159f696575"},
     "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-09T00:58:06.288Z",
     "updatedAt": "2020-10-09T00:58:06.288Z",
     "__v": 0
@@ -24,7 +24,7 @@
     "speaker": {"$oid":  "5f67e74b1679d40cca533e3e"},
     "event": {"$oid":  "5f6952fe608518159f696573"},
     "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-06T20:34:40.580Z",
     "updatedAt": "2020-10-06T20:34:40.580Z",
     "__v": 0
@@ -35,7 +35,7 @@
     "event": {"$oid":  "5f69530e608518159f696575"},
     "body": "New qusetion 2",
     "comments": [],
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-06T20:33:50.077Z",
     "updatedAt": "2020-10-06T20:33:50.077Z",
     "__v": 0
@@ -45,7 +45,7 @@
     "speaker": {"$oid":  "5f67e7571679d40cca533e3f"},
     "event": {"$oid":  "5f69530e608518159f696575"},
     "body": "New question",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-06T20:33:27.436Z",
     "updatedAt": "2020-10-06T20:33:27.436Z",
     "__v": 0
@@ -55,7 +55,7 @@
     "speaker": {"$oid":  "5f67e7571679d40cca533e3f"},
     "event": {"$oid":  "5f69530e608518159f696575"},
     "body": "Lorem Ipsum is simply",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-03T07:38:39.768Z",
     "updatedAt": "2020-10-03T07:38:39.768Z",
     "__v": 0
@@ -65,7 +65,7 @@
     "speaker": {"$oid":  "5f67e7571679d40cca533e3f"},
     "event": {"$oid":  "5f69530e608518159f696575"},
     "body": "dummy text",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-01T11:46:08.732Z",
     "updatedAt": "2020-10-01T11:46:08.732Z",
     "__v": 0
@@ -75,7 +75,7 @@
     "speaker": {"$oid":  "5f67e74b1679d40cca533e3e"},
     "event": {"$oid":  "5f6952fe608518159f696573"},
     "body": "Simply dummy",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-01T11:41:23.049Z",
     "updatedAt": "2020-10-01T11:41:23.049Z",
     "__v": 0
@@ -85,7 +85,7 @@
     "speaker": {"$oid":  "5f67e74b1679d40cca533e3e"},
     "event": {"$oid":  "5f6952fe608518159f696573"},
     "body": "Ipsum is simply dummy",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-01T11:40:18.334Z",
     "updatedAt": "2020-10-01T11:40:18.334Z",
     "__v": 0
@@ -95,7 +95,7 @@
     "speaker": {"$oid":  "5f67e7571679d40cca533e3f"},
     "event": {"$oid":  "5f69530e608518159f696575"},
     "body": "when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-01T11:40:04.604Z",
     "updatedAt": "2020-10-01T11:40:04.604Z",
     "__v": 0
@@ -105,9 +105,10 @@
     "speaker": {"$oid": "5f67e7571679d40cca533e3f"},
     "event": {"$oid": "5f69530e608518159f696575"},
     "body": "when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    "user": "5f6934dcc5b1b910e9597b82",
+    "user": {"$oid":  "5f6934dcc5b1b910e9597b82"},
     "createdAt": "2020-10-01T11:39:40.545Z",
     "updatedAt": "2020-10-01T11:39:40.545Z",
     "__v": 0
   }
 ]
+
